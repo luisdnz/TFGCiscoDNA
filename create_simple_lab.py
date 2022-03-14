@@ -1,5 +1,6 @@
 from virl2_client import ClientLibrary
 
+
 #Con esto nos conectamos a Cisco Modelling Labs.
 #Los parametros suelen ser los mismos pero, si no se conecta, revisa los datos que te da el sandbox.
 client = ClientLibrary(url="10.10.20.161", username="developer", password="C1sco12345", ssl_verify=False)
@@ -18,6 +19,8 @@ sw1 = lab.create_node("sw1", "nxosv", 100, 80)
 host1 = lab.create_node("host1", "desktop", 70, 160)
 host2 = lab.create_node("host2", "desktop", 130, 160)
 
+lab.build_configurations()
+
 #Con esto creamos interfaces dentro de los nodos
 r1_i1 = r1.create_interface()
 sw1_i1 = sw1.create_interface()
@@ -32,8 +35,7 @@ lab.create_link(host1_i1, sw1_i2)
 lab.create_link(host2_i1, sw1_i3)
 
 
-
-for node in lab.nodes():
-    print(node, node.node_definition)
-
-lab.download()
+#lab.start() #Tarda unos minutos
+#lab.wipe()
+#lab.stop()
+#lab.download()
