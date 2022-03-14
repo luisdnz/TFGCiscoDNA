@@ -19,6 +19,7 @@ sw1 = lab.create_node("sw1", "nxosv", 100, 80)
 host1 = lab.create_node("host1", "desktop", 70, 160)
 host2 = lab.create_node("host2", "desktop", 130, 160)
 
+#Con esto generamos la configuracion por default de cada nodo
 lab.build_configurations()
 
 #Con esto creamos interfaces dentro de los nodos
