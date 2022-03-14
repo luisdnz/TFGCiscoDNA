@@ -1,0 +1,239 @@
+testbed:
+  name: Small NXOS/IOSXE Network
+devices:
+  terminal_server:
+    os: linux
+    type: linux
+    credentials:
+      default:
+        username: change_me
+        password: change_me
+    connections:
+      cli:
+        protocol: ssh
+        ip: 10.10.20.161
+  dist-rtr01:
+    os: iosxe
+    type: router
+    series: csr1000v
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n5/0
+  dist-rtr02:
+    os: iosxe
+    type: router
+    series: csr1000v
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n6/0
+  dist-sw01:
+    os: nxos
+    type: switch
+    series: n9k
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n7/0
+  dist-sw02:
+    os: nxos
+    type: switch
+    series: n9k
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n8/0
+  inside-host01:
+    os: linux
+    type: server
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n9/0
+  inside-host02:
+    os: linux
+    type: server
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon
+      a:
+        protocol: telnet
+        proxy: terminal_server
+        command: open /b4bb2d/n10/0
+topology:
+  dist-rtr01:
+    interfaces:
+      Loopback0:
+        type: loopback
+      GigabitEthernet1:
+        link: l4
+        type: ethernet
+      GigabitEthernet2:
+        type: ethernet
+      GigabitEthernet3:
+        type: ethernet
+      GigabitEthernet4:
+        link: l13
+        type: ethernet
+      GigabitEthernet5:
+        link: l14
+        type: ethernet
+      GigabitEthernet6:
+        link: l26
+        type: ethernet
+  dist-rtr02:
+    interfaces:
+      Loopback0:
+        type: loopback
+      GigabitEthernet1:
+        link: l25
+        type: ethernet
+      GigabitEthernet2:
+        type: ethernet
+      GigabitEthernet3:
+        type: ethernet
+      GigabitEthernet4:
+        link: l15
+        type: ethernet
+      GigabitEthernet5:
+        link: l16
+        type: ethernet
+      GigabitEthernet6:
+        link: l26
+        type: ethernet
+  dist-sw01:
+    interfaces:
+      Loopback0:
+        type: loopback
+      mgmt0:
+        link: l27
+        type: ethernet
+      Ethernet1/1:
+        link: l5
+        type: ethernet
+      Ethernet1/2:
+        link: l6
+        type: ethernet
+      Ethernet1/3:
+        link: l13
+        type: ethernet
+      Ethernet1/4:
+        link: l15
+        type: ethernet
+      Ethernet1/5:
+        type: ethernet
+      Ethernet1/6:
+        type: ethernet
+      Ethernet1/7:
+        type: ethernet
+      Ethernet1/8:
+        type: ethernet
+      Ethernet1/9:
+        type: ethernet
+      Ethernet1/10:
+        type: ethernet
+      Ethernet1/11:
+        link: l17
+        type: ethernet
+  dist-sw02:
+    interfaces:
+      Loopback0:
+        type: loopback
+      mgmt0:
+        link: l28
+        type: ethernet
+      Ethernet1/1:
+        link: l5
+        type: ethernet
+      Ethernet1/2:
+        link: l6
+        type: ethernet
+      Ethernet1/3:
+        link: l14
+        type: ethernet
+      Ethernet1/4:
+        link: l16
+        type: ethernet
+      Ethernet1/5:
+        type: ethernet
+      Ethernet1/6:
+        type: ethernet
+      Ethernet1/7:
+        type: ethernet
+      Ethernet1/8:
+        type: ethernet
+      Ethernet1/9:
+        type: ethernet
+      Ethernet1/10:
+        type: ethernet
+      Ethernet1/11:
+        link: l18
+        type: ethernet
+  inside-host01:
+    interfaces:
+      ens3:
+        link: l17
+        type: ethernet
+      ens4:
+        type: ethernet
+      ens5:
+        type: ethernet
+      ens6:
+        type: ethernet
+      ens7:
+        type: ethernet
+      ens8:
+        type: ethernet
+      ens9:
+        type: ethernet
+      ens10:
+        link: l30
+        type: ethernet
+  inside-host02:
+    interfaces:
+      eth0:
+        link: l18
+        type: ethernet
+      eth1:
+        link: l31
+        type: ethernet
