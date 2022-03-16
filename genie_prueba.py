@@ -1,9 +1,9 @@
 from genie.conf import Genie
 from genie.conf.base import Interface
 
-testbed = Genie.init("testbed.yaml")
+testbed = Genie.init("testbed2.yaml")
 
-dist_rtr01 = testbed.devices["dist-rtr02"]
+dist_rtr01 = testbed.devices["r1"]
 dist_rtr01.connect()
 
 new_loopback = Interface(device = dist_rtr01, name="Loopback12")

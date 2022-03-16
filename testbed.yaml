@@ -6,8 +6,8 @@ devices:
     type: linux
     credentials:
       default:
-        username: developer
-        password: C1sco12345
+        username: change_me
+        password: change_me
     connections:
       cli:
         protocol: ssh
