@@ -161,11 +161,11 @@
                 },
                 {
                     "name": "3",
-                    "description": "Interfaz creada con Python a traves de RestCONF",
+                    "description": "Interfaz configurada a trav\u00e9s de Python",
                     "ip": {
                         "address": {
                             "primary": {
-                                "address": "172.16.252.53",
+                                "address": "172.16.252.54",
                                 "mask": "255.255.255.252"
                             }
                         }
@@ -269,7 +269,7 @@
                             ]
                         },
                         {
-                            "name": "TP-self-signed-4017977880",
+                            "name": "TP-self-signed-206890607",
                             "certificate": [
                                 {
                                     "serial": "01",
@@ -292,7 +292,7 @@
                         ]
                     },
                     {
-                        "id": "TP-self-signed-4017977880",
+                        "id": "TP-self-signed-206890607",
                         "enrollment": {
                             "selfsigned": [
                                 null
@@ -301,7 +301,7 @@
                         "revocation-check": [
                             "none"
                         ],
-                        "subject-name": "cn=IOS-Self-Signed-Certificate-4017977880"
+                        "subject-name": "cn=IOS-Self-Signed-Certificate-206890607"
                     }
                 ]
             }
@@ -328,7 +328,7 @@
         "license": {
             "udi": {
                 "pid": "CSR1000V",
-                "sn": "94ZYNVFHDJL"
+                "sn": "931OBQ5D2M4"
             }
         },
         "line": {

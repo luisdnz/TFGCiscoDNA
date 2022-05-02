@@ -14,10 +14,9 @@ headers = {
 }
 module = "Cisco-IOS-XE-native:native"
 url = f"https://{distr_rt_1['ip']}:{distr_rt_1['port']}/restconf/data/{module}"
-
-
 requests.packages.urllib3.disable_warnings()
-response = requests.get(url,headers = headers, auth = (distr_rt_1["username"], distr_rt_1["password"]), verify=False).json()
-pprint(response)
-with open("running-config.json", "w") as f:
-    json.dump(response, f, indent=4)
+with open("RESTCONF/csr1000v-running-config.json", "r") as f:
+    jsonstr = f.read()
+
+response = requests.put(url,headers = headers,data=jsonstr, auth = (distr_rt_1["username"], distr_rt_1["password"]), verify=False)
+print(response.status_code)
