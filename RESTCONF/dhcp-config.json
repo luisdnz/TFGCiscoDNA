@@ -1,0 +1,56 @@
+{
+    "Cisco-IOS-XE-native:dhcp": {
+        "Cisco-IOS-XE-dhcp:excluded-address": {
+            "low-high-address-list": [
+                {
+                    "low-address": "172.16.255.1",
+                    "high-address": "172.16.255.10"
+                },
+                {
+                    "low-address": "192.168.0.1",
+                    "high-address": "192.168.0.10"
+                }
+            ]
+        },
+        "Cisco-IOS-XE-dhcp:pool": [
+            {
+                "id": "RedG2",
+                "default-router": {
+                    "default-router-list": [
+                        "192.168.0.1"
+                    ]
+                },
+                "dns-server": {
+                    "dns-server-list": [
+                        "192.168.0.1"
+                    ]
+                },
+                "network": {
+                    "primary-network": {
+                        "number": "192.168.0.0",
+                        "mask": "255.255.255.0"
+                    }
+                }
+            },
+            {
+                "id": "RedG3",
+                "default-router": {
+                    "default-router-list": [
+                        "172.16.255.1"
+                    ]
+                },
+                "dns-server": {
+                    "dns-server-list": [
+                        "172.16.255.1"
+                    ]
+                },
+                "network": {
+                    "primary-network": {
+                        "number": "172.16.255.0",
+                        "mask": "255.255.255.0"
+                    }
+                }
+            }
+        ]
+    }
+}

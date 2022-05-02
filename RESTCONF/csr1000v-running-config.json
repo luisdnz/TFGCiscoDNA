@@ -58,7 +58,7 @@
                 }
             }
         },
-        "hostname": "dist-rtr03",
+        "hostname": "dist-rtr04",
         "enable": {
             "password": {
                 "secret": "cisco"
@@ -89,6 +89,60 @@
             "domain": {
                 "lookup": false,
                 "name": "virl.info"
+            },
+            "dhcp": {
+                "Cisco-IOS-XE-dhcp:excluded-address": {
+                    "low-high-address-list": [
+                        {
+                            "low-address": "172.16.255.1",
+                            "high-address": "192.16.255.10"
+                        },
+                        {
+                            "low-address": "192.168.0.1",
+                            "high-address": "192.168.0.10"
+                        }
+                    ]
+                },
+                "Cisco-IOS-XE-dhcp:pool": [
+                    {
+                        "id": "RedG2",
+                        "default-router": {
+                            "default-router-list": [
+                                "192.168.0.1"
+                            ]
+                        },
+                        "dns-server": {
+                            "dns-server-list": [
+                                "192.168.0.1"
+                            ]
+                        },
+                        "network": {
+                            "primary-network": {
+                                "number": "192.168.0.0",
+                                "mask": "255.255.255.0"
+                            }
+                        }
+                    },
+                    {
+                        "id": "RedG3",
+                        "default-router": {
+                            "default-router-list": [
+                                "172.16.255.1"
+                            ]
+                        },
+                        "dns-server": {
+                            "dns-server-list": [
+                                "172.16.255.1"
+                            ]
+                        },
+                        "network": {
+                            "primary-network": {
+                                "number": "172.16.255.0",
+                                "mask": "255.255.255.0"
+                            }
+                        }
+                    }
+                ]
             },
             "forward-protocol": {
                 "protocol": "nd"
@@ -127,7 +181,7 @@
                     "ip": {
                         "address": {
                             "primary": {
-                                "address": "10.10.20.183",
+                                "address": "10.10.20.184",
                                 "mask": "255.255.255.0"
                             }
                         }
@@ -142,12 +196,11 @@
                 },
                 {
                     "name": "2",
-                    "description": "L3 Link to core-rtr01",
                     "ip": {
                         "address": {
                             "primary": {
-                                "address": "172.16.252.50",
-                                "mask": "255.255.255.252"
+                                "address": "192.168.0.1",
+                                "mask": "255.255.255.0"
                             }
                         }
                     },
@@ -161,12 +214,12 @@
                 },
                 {
                     "name": "3",
-                    "description": "Interfaz configurada a trav\u00e9s de Python",
+                    "description": "Interfaz creada con Python a traves de RestCONF",
                     "ip": {
                         "address": {
                             "primary": {
-                                "address": "172.16.252.54",
-                                "mask": "255.255.255.252"
+                                "address": "172.16.255.1",
+                                "mask": "255.255.255.0"
                             }
                         }
                     },
@@ -269,7 +322,7 @@
                             ]
                         },
                         {
-                            "name": "TP-self-signed-206890607",
+                            "name": "TP-self-signed-4042828412",
                             "certificate": [
                                 {
                                     "serial": "01",
@@ -292,7 +345,7 @@
                         ]
                     },
                     {
-                        "id": "TP-self-signed-206890607",
+                        "id": "TP-self-signed-4042828412",
                         "enrollment": {
                             "selfsigned": [
                                 null
@@ -301,7 +354,7 @@
                         "revocation-check": [
                             "none"
                         ],
-                        "subject-name": "cn=IOS-Self-Signed-Certificate-206890607"
+                        "subject-name": "cn=IOS-Self-Signed-Certificate-4042828412"
                     }
                 ]
             }
@@ -328,7 +381,7 @@
         "license": {
             "udi": {
                 "pid": "CSR1000V",
-                "sn": "931OBQ5D2M4"
+                "sn": "9DE33JXGAHG"
             }
         },
         "line": {
