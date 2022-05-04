@@ -3,7 +3,7 @@ import json
 from pprint import pprint
 
 distr_rt_1 = {
-    "ip" : "10.10.20.184",
+    "ip" : "10.10.20.183",
     "port": "443",
     "username":"cisco",
     "password":"cisco"    
@@ -25,8 +25,8 @@ payload = {
         'ietf-ip:ipv4' : {
             'address' : [
                             {
-                            'ip' : '172.16.255.1',
-                            'netmask' : '255.255.255.0'
+                            'ip' : '172.16.0.6',
+                            'netmask' : '255.255.255.252'
                             }
                         ]
                     },
