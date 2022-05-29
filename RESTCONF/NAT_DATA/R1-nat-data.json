@@ -1,0 +1,33 @@
+{
+    "Cisco-IOS-XE-nat-oper:nat-data": {
+        "ip-nat-statistics": {
+            "initialized": true,
+            "entries": "1",
+            "statics": "1",
+            "statics-sorted": [
+                "1",
+                "0",
+                "0",
+                "0"
+            ],
+            "flows": "0",
+            "insides": "1",
+            "outsides": "1",
+            "entry-timeouts": "18",
+            "hits": "3678",
+            "misses": "18",
+            "interrupt-switched": "0",
+            "packets-punted": "0",
+            "frag-pak-count": "0",
+            "pool-stats-drop": "0",
+            "mapping-stats-drop": "0",
+            "portlist-req-fail": "0",
+            "ipalias-add-fail": "0",
+            "limit-entry-add-fail": "0",
+            "in2out-drops": "0",
+            "out2in-drops": "0",
+            "mib-addr-binds": 1,
+            "mib-addport-binds": 0
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "ietf-interfaces:interfaces": {
+        "interface": [
+            {
+                "name": "GigabitEthernet1",
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "10.10.20.2",
+                            "netmask": "255.255.255.0"
+                        }
+                    ]
+                },
+                "ietf-ip:ipv6": {}
+            },
+            {
+                "name": "GigabitEthernet2",
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "192.168.0.18",
+                            "netmask": "255.255.255.252"
+                        }
+                    ]
+                },
+                "ietf-ip:ipv6": {}
+            },
+            {
+                "name": "GigabitEthernet3",
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "192.168.0.25",
+                            "netmask": "255.255.255.252"
+                        }
+                    ]
+                },
+                "ietf-ip:ipv6": {}
+            },
+            {
+                "name": "GigabitEthernet4",
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "192.168.1.254",
+                            "netmask": "255.255.255.0"
+                        }
+                    ]
+                },
+                "ietf-ip:ipv6": {}
+            },
+            {
+                "name": "GigabitEthernet5",
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "192.168.0.9",
+                            "netmask": "255.255.255.252"
+                        }
+                    ]
+                },
+                "ietf-ip:ipv6": {}
+            }
+        ]
+    }
+}

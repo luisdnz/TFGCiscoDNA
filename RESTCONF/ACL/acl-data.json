@@ -1,0 +1,43 @@
+{
+    "Cisco-IOS-XE-acl-oper:access-lists": {
+        "access-list": [
+            {
+                "access-control-list-name": "1",
+                "access-list-entries": {
+                    "access-list-entry": [
+                        {
+                            "rule-name": 20,
+                            "access-list-entries-oper-data": {
+                                "match-counter": "0"
+                            },
+                            "access-list-entries-rule-data": {
+                                "v4-standard-ace-rule": {
+                                    "action": "deny",
+                                    "source-address": {
+                                        "host": "10.10.20.50"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "rule-name": 10,
+                            "access-list-entries-oper-data": {
+                                "match-counter": "69"
+                            },
+                            "access-list-entries-rule-data": {
+                                "v4-standard-ace-rule": {
+                                    "action": "permit",
+                                    "source-address": {
+                                        "host": "192.168.254.11"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "access-control-list-type": "v4-standard-acl",
+                "access-control-list-type-flags": ""
+            }
+        ]
+    }
+}

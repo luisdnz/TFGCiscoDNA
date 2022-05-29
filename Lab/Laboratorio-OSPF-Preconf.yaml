@@ -1,0 +1,440 @@
+lab:
+  description: ''
+  notes: ''
+  timestamp: 1653485697.6460047
+  title: Lab at Wed 09:34 AM
+  version: 0.0.4
+nodes:
+  - id: n0
+    label: ext-conn-0
+    node_definition: external_connector
+    x: -150
+    y: -100
+    configuration: bridge0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
+  - id: n1
+    label: unmanaged-switch-0
+    node_definition: unmanaged_switch
+    x: -150
+    y: 0
+    configuration: ''
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port0
+        type: physical
+      - id: i1
+        slot: 1
+        label: port1
+        type: physical
+      - id: i2
+        slot: 2
+        label: port2
+        type: physical
+      - id: i3
+        slot: 3
+        label: port3
+        type: physical
+      - id: i4
+        slot: 4
+        label: port4
+        type: physical
+      - id: i5
+        slot: 5
+        label: port5
+        type: physical
+      - id: i6
+        slot: 6
+        label: port6
+        type: physical
+      - id: i7
+        slot: 7
+        label: port7
+        type: physical
+  - id: n2
+    label: R1
+    node_definition: csr1000v
+    x: -400
+    y: 50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-170302
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+  - id: n3
+    label: R3
+    node_definition: csr1000v
+    x: 100
+    y: 50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-170302
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n4
+    label: R2
+    node_definition: csr1000v
+    x: -150
+    y: -200
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-170302
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n5
+    label: S3
+    node_definition: iosvl2
+    x: 300
+    y: 50
+    configuration: hostname inserthostname_here
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n6
+    label: PC3
+    node_definition: desktop
+    x: 500
+    y: 50
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: desktop-3-13-2-xfce
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+  - id: n7
+    label: PC2
+    node_definition: desktop
+    x: -150
+    y: -450
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: desktop-3-13-2-xfce
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+  - id: n8
+    label: S2
+    node_definition: iosvl2
+    x: -150
+    y: -300
+    configuration: hostname inserthostname_here
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n9
+    label: S1
+    node_definition: iosvl2
+    x: -550
+    y: 50
+    configuration: hostname inserthostname_here
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n10
+    label: PC1
+    node_definition: desktop
+    x: -800
+    y: 50
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: desktop-3-13-2-xfce
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+  - id: n11
+    label: Internet
+    node_definition: iosv
+    x: -550
+    y: -150
+    configuration: ''
+    image_definition: iosv-159-3-m3
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n12
+    label: SInternet
+    node_definition: iosvl2
+    x: -750
+    y: -150
+    configuration: hostname inserthostname_here
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n13
+    label: PCInternet
+    node_definition: desktop
+    x: -750
+    y: -300
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: desktop-3-13-2-xfce
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+links:
+  - id: l0
+    i1: i0
+    n1: n1
+    i2: i0
+    n2: n0
+  - id: l1
+    i1: i1
+    n1: n4
+    i2: i1
+    n2: n1
+  - id: l2
+    i1: i1
+    n1: n2
+    i2: i2
+    n2: n1
+  - id: l3
+    i1: i1
+    n1: n3
+    i2: i3
+    n2: n1
+  - id: l4
+    i1: i2
+    n1: n3
+    i2: i2
+    n2: n4
+  - id: l5
+    i1: i2
+    n1: n2
+    i2: i3
+    n2: n4
+  - id: l6
+    i1: i3
+    n1: n2
+    i2: i3
+    n2: n3
+  - id: l7
+    i1: i4
+    n1: n3
+    i2: i1
+    n2: n5
+  - id: l8
+    i1: i0
+    n1: n6
+    i2: i2
+    n2: n5
+  - id: l9
+    i1: i4
+    n1: n4
+    i2: i1
+    n2: n8
+  - id: l10
+    i1: i2
+    n1: n8
+    i2: i0
+    n2: n7
+  - id: l11
+    i1: i0
+    n1: n10
+    i2: i1
+    n2: n9
+  - id: l12
+    i1: i2
+    n1: n9
+    i2: i4
+    n2: n2
+  - id: l13
+    i1: i1
+    n1: n11
+    i2: i5
+    n2: n2
+  - id: l14
+    i1: i2
+    n1: n11
+    i2: i1
+    n2: n12
+  - id: l15
+    i1: i0
+    n1: n13
+    i2: i2
+    n2: n12

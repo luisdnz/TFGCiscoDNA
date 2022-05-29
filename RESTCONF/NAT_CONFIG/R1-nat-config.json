@@ -1,0 +1,16 @@
+{
+    "Cisco-IOS-XE-nat:nat": {
+        "inside": {
+            "source": {
+                "static": {
+                    "nat-static-transport-list": [
+                        {
+                            "local-ip": "192.168.1.21",
+                            "global-ip": "209.165.201.5"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

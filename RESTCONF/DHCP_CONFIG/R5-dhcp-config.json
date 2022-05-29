@@ -1,0 +1,85 @@
+{
+    "Cisco-IOS-XE-native:dhcp": {
+        "Cisco-IOS-XE-dhcp:excluded-address": {
+            "low-address-list": [
+                {
+                    "low-address": "192.168.1.254"
+                },
+                {
+                    "low-address": "192.168.2.254"
+                },
+                {
+                    "low-address": "192.168.3.254"
+                }
+            ],
+            "low-high-address-list": [
+                {
+                    "low-address": "192.168.1.1",
+                    "high-address": "192.168.1.20"
+                }
+            ]
+        },
+        "Cisco-IOS-XE-dhcp:pool": [
+            {
+                "id": "Pool1",
+                "default-router": {
+                    "default-router-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "dns-server": {
+                    "dns-server-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "domain-name": "example.com",
+                "network": {
+                    "primary-network": {
+                        "number": "192.168.1.0",
+                        "mask": "255.255.255.0"
+                    }
+                }
+            },
+            {
+                "id": "Pool2",
+                "default-router": {
+                    "default-router-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "dns-server": {
+                    "dns-server-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "domain-name": "example.com",
+                "network": {
+                    "primary-network": {
+                        "number": "192.168.2.0",
+                        "mask": "255.255.255.0"
+                    }
+                }
+            },
+            {
+                "id": "Pool3",
+                "default-router": {
+                    "default-router-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "dns-server": {
+                    "dns-server-list": [
+                        "192.168.0.2"
+                    ]
+                },
+                "domain-name": "example.com",
+                "network": {
+                    "primary-network": {
+                        "number": "192.168.3.0",
+                        "mask": "255.255.255.0"
+                    }
+                }
+            }
+        ]
+    }
+}

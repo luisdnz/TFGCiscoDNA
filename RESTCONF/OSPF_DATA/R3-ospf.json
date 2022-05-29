@@ -1,0 +1,642 @@
+{
+    "Cisco-IOS-XE-ospf-oper:ospf-oper-data": {
+        "ospf-state": {
+            "op-mode": "ospf-ships-in-the-night",
+            "ospf-instance": [
+                {
+                    "af": "address-family-ipv4",
+                    "router-id": 50529027,
+                    "ospf-area": [
+                        {
+                            "area-id": 0,
+                            "ospf-interface": [
+                                {
+                                    "name": "GigabitEthernet5",
+                                    "network-type": "ospf-broadcast",
+                                    "passive": false,
+                                    "demand-circuit": false,
+                                    "multi-area": {
+                                        "multi-area-id": 0,
+                                        "cost": 0
+                                    },
+                                    "node-flag": false,
+                                    "fast-reroute": {
+                                        "candidate-disabled": false,
+                                        "enabled": false,
+                                        "remote-lfa-enabled": false
+                                    },
+                                    "cost": 1,
+                                    "hello-interval": 10,
+                                    "dead-interval": 40,
+                                    "retransmit-interval": 5,
+                                    "transmit-delay": 1,
+                                    "mtu-ignore": false,
+                                    "lls": false,
+                                    "prefix-suppression": false,
+                                    "bfd": false,
+                                    "ttl-security": {
+                                        "enabled": false,
+                                        "hops": 255
+                                    },
+                                    "enable": true,
+                                    "authentication": {
+                                        "no-auth": 1
+                                    },
+                                    "state": "BDR",
+                                    "hello-timer": 2,
+                                    "wait-timer": 40,
+                                    "dr": "5.5.5.5",
+                                    "bdr": "3.3.3.3",
+                                    "ospf-neighbor": [
+                                        {
+                                            "neighbor-id": "5.5.5.5",
+                                            "address": "192.168.0.14",
+                                            "dr": "192.168.0.14",
+                                            "bdr": "192.168.0.13",
+                                            "state": "ospf-nbr-full",
+                                            "stats": {
+                                                "nbr-event-count": 6,
+                                                "nbr-retrans-qlen": 0
+                                            }
+                                        }
+                                    ],
+                                    "priority": 0
+                                },
+                                {
+                                    "name": "GigabitEthernet4",
+                                    "network-type": "ospf-broadcast",
+                                    "passive": false,
+                                    "demand-circuit": false,
+                                    "multi-area": {
+                                        "multi-area-id": 0,
+                                        "cost": 0
+                                    },
+                                    "node-flag": false,
+                                    "fast-reroute": {
+                                        "candidate-disabled": false,
+                                        "enabled": false,
+                                        "remote-lfa-enabled": false
+                                    },
+                                    "cost": 1,
+                                    "hello-interval": 10,
+                                    "dead-interval": 40,
+                                    "retransmit-interval": 5,
+                                    "transmit-delay": 1,
+                                    "mtu-ignore": false,
+                                    "lls": false,
+                                    "prefix-suppression": false,
+                                    "bfd": false,
+                                    "ttl-security": {
+                                        "enabled": false,
+                                        "hops": 255
+                                    },
+                                    "enable": true,
+                                    "authentication": {
+                                        "no-auth": 1
+                                    },
+                                    "state": "DR",
+                                    "hello-timer": 6,
+                                    "wait-timer": 40,
+                                    "dr": "3.3.3.3",
+                                    "bdr": "0.0.0.0",
+                                    "priority": 0
+                                },
+                                {
+                                    "name": "GigabitEthernet3",
+                                    "network-type": "ospf-broadcast",
+                                    "passive": false,
+                                    "demand-circuit": false,
+                                    "multi-area": {
+                                        "multi-area-id": 0,
+                                        "cost": 0
+                                    },
+                                    "node-flag": false,
+                                    "fast-reroute": {
+                                        "candidate-disabled": false,
+                                        "enabled": false,
+                                        "remote-lfa-enabled": false
+                                    },
+                                    "cost": 1,
+                                    "hello-interval": 10,
+                                    "dead-interval": 40,
+                                    "retransmit-interval": 5,
+                                    "transmit-delay": 1,
+                                    "mtu-ignore": false,
+                                    "lls": false,
+                                    "prefix-suppression": false,
+                                    "bfd": false,
+                                    "ttl-security": {
+                                        "enabled": false,
+                                        "hops": 255
+                                    },
+                                    "enable": true,
+                                    "authentication": {
+                                        "no-auth": 1
+                                    },
+                                    "state": "BDR",
+                                    "hello-timer": 6,
+                                    "wait-timer": 40,
+                                    "dr": "4.4.4.4",
+                                    "bdr": "3.3.3.3",
+                                    "ospf-neighbor": [
+                                        {
+                                            "neighbor-id": "4.4.4.4",
+                                            "address": "192.168.0.22",
+                                            "dr": "192.168.0.22",
+                                            "bdr": "192.168.0.21",
+                                            "state": "ospf-nbr-full",
+                                            "stats": {
+                                                "nbr-event-count": 6,
+                                                "nbr-retrans-qlen": 0
+                                            }
+                                        }
+                                    ],
+                                    "priority": 0
+                                },
+                                {
+                                    "name": "GigabitEthernet2",
+                                    "network-type": "ospf-broadcast",
+                                    "passive": false,
+                                    "demand-circuit": false,
+                                    "multi-area": {
+                                        "multi-area-id": 0,
+                                        "cost": 0
+                                    },
+                                    "node-flag": false,
+                                    "fast-reroute": {
+                                        "candidate-disabled": false,
+                                        "enabled": false,
+                                        "remote-lfa-enabled": false
+                                    },
+                                    "cost": 1,
+                                    "hello-interval": 10,
+                                    "dead-interval": 40,
+                                    "retransmit-interval": 5,
+                                    "transmit-delay": 1,
+                                    "mtu-ignore": false,
+                                    "lls": false,
+                                    "prefix-suppression": false,
+                                    "bfd": false,
+                                    "ttl-security": {
+                                        "enabled": false,
+                                        "hops": 255
+                                    },
+                                    "enable": true,
+                                    "authentication": {
+                                        "no-auth": 1
+                                    },
+                                    "state": "DR",
+                                    "hello-timer": 5,
+                                    "wait-timer": 40,
+                                    "dr": "3.3.3.3",
+                                    "bdr": "2.2.2.2",
+                                    "ospf-neighbor": [
+                                        {
+                                            "neighbor-id": "2.2.2.2",
+                                            "address": "192.168.0.25",
+                                            "dr": "192.168.0.26",
+                                            "bdr": "192.168.0.25",
+                                            "state": "ospf-nbr-full",
+                                            "stats": {
+                                                "nbr-event-count": 12,
+                                                "nbr-retrans-qlen": 0
+                                            }
+                                        }
+                                    ],
+                                    "priority": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "process-id": 1
+                }
+            ]
+        },
+        "ospfv2-instance": [
+            {
+                "instance-id": 1,
+                "vrf-name": "",
+                "router-id": 50529027,
+                "ospfv2-area": [
+                    {
+                        "area-id": 0,
+                        "ospfv2-lsdb-area": [
+                            {
+                                "lsa-type": 1,
+                                "lsa-id": 16843009,
+                                "advertising-router": 16843009,
+                                "lsa-age": 1751,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483683,
+                                "lsa-checksum": 60992,
+                                "lsa-length": 48,
+                                "ospfv2-router-lsa-links": [
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235537,
+                                        "link-data": 3232235537
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235521,
+                                        "link-data": 3232235521
+                                    }
+                                ],
+                                "router-lsa": {
+                                    "router-lsa-bits": "",
+                                    "router-lsa-number-links": 2
+                                }
+                            },
+                            {
+                                "lsa-type": 1,
+                                "lsa-id": 33686018,
+                                "advertising-router": 33686018,
+                                "lsa-age": 84,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483695,
+                                "lsa-checksum": 44234,
+                                "lsa-length": 72,
+                                "ospfv2-router-lsa-links": [
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235530,
+                                        "link-data": 3232235529
+                                    },
+                                    {
+                                        "link-type": 3,
+                                        "link-id": 3232235776,
+                                        "link-data": 4294967040
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235546,
+                                        "link-data": 3232235545
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235537,
+                                        "link-data": 3232235538
+                                    }
+                                ],
+                                "router-lsa": {
+                                    "router-lsa-bits": "",
+                                    "router-lsa-number-links": 4
+                                }
+                            },
+                            {
+                                "lsa-type": 1,
+                                "lsa-id": 50529027,
+                                "advertising-router": 50529027,
+                                "lsa-age": 1573,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483691,
+                                "lsa-checksum": 60787,
+                                "lsa-length": 72,
+                                "ospfv2-router-lsa-links": [
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235534,
+                                        "link-data": 3232235533
+                                    },
+                                    {
+                                        "link-type": 3,
+                                        "link-id": 3232236032,
+                                        "link-data": 4294967040
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235542,
+                                        "link-data": 3232235541
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235546,
+                                        "link-data": 3232235546
+                                    }
+                                ],
+                                "router-lsa": {
+                                    "router-lsa-bits": "",
+                                    "router-lsa-number-links": 4
+                                }
+                            },
+                            {
+                                "lsa-type": 1,
+                                "lsa-id": 67372036,
+                                "advertising-router": 67372036,
+                                "lsa-age": 1667,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483682,
+                                "lsa-checksum": 390,
+                                "lsa-length": 60,
+                                "ospfv2-router-lsa-links": [
+                                    {
+                                        "link-type": 3,
+                                        "link-id": 3232236288,
+                                        "link-data": 4294967040
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235542,
+                                        "link-data": 3232235542
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235526,
+                                        "link-data": 3232235525
+                                    }
+                                ],
+                                "router-lsa": {
+                                    "router-lsa-bits": "",
+                                    "router-lsa-number-links": 3
+                                }
+                            },
+                            {
+                                "lsa-type": 1,
+                                "lsa-id": 84215045,
+                                "advertising-router": 84215045,
+                                "lsa-age": 1901,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483697,
+                                "lsa-checksum": 32672,
+                                "lsa-length": 72,
+                                "ospfv2-router-lsa-links": [
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235534,
+                                        "link-data": 3232235534
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235530,
+                                        "link-data": 3232235530
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235526,
+                                        "link-data": 3232235526
+                                    },
+                                    {
+                                        "link-type": 2,
+                                        "link-id": 3232235521,
+                                        "link-data": 3232235522
+                                    }
+                                ],
+                                "router-lsa": {
+                                    "router-lsa-bits": "",
+                                    "router-lsa-number-links": 4
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235521,
+                                "advertising-router": 16843009,
+                                "lsa-age": 22,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483664,
+                                "lsa-checksum": 45812,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235526,
+                                "advertising-router": 84215045,
+                                "lsa-age": 1901,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483663,
+                                "lsa-checksum": 24615,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235530,
+                                "advertising-router": 84215045,
+                                "lsa-age": 148,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483657,
+                                "lsa-checksum": 57265,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235534,
+                                "advertising-router": 84215045,
+                                "lsa-age": 1901,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483663,
+                                "lsa-checksum": 56741,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235537,
+                                "advertising-router": 16843009,
+                                "lsa-age": 22,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483657,
+                                "lsa-checksum": 35105,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235542,
+                                "advertising-router": 67372036,
+                                "lsa-age": 1667,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483663,
+                                "lsa-checksum": 35321,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235546,
+                                "advertising-router": 50529027,
+                                "lsa-age": 79,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483657,
+                                "lsa-checksum": 14170,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            }
+                        ],
+                        "ospfv2-interface": [
+                            {
+                                "name": "GigabitEthernet5",
+                                "network-type": "ospf-broadcast",
+                                "enable": true,
+                                "passive": false,
+                                "demand-circuit": false,
+                                "mtu-ignore": false,
+                                "prefix-suppresion": false,
+                                "cost": 1,
+                                "hello-interval": 10,
+                                "dead-interval": 40,
+                                "retransmit-interval": 5,
+                                "transmit-delay": 1,
+                                "hello-timer": 1788,
+                                "wait-timer": 40000,
+                                "dr": 84215045,
+                                "bdr": 50529027,
+                                "dr-ip": "192.168.0.14",
+                                "bdr-ip": "192.168.0.13",
+                                "state": "ospfv2-interface-state-backup",
+                                "ttl-security-val": {
+                                    "enable": false,
+                                    "hops": 255
+                                },
+                                "auth-val": {
+                                    "no-auth": 1
+                                },
+                                "ospfv2-neighbor": [
+                                    {
+                                        "nbr-id": 84215045,
+                                        "address": "192.168.0.14",
+                                        "dr": 3232235534,
+                                        "bdr": 3232235533,
+                                        "dr-ip": "192.168.0.14",
+                                        "bdr-ip": "192.168.0.13",
+                                        "event-count": 6,
+                                        "retrans-count": 0,
+                                        "state": "ospf-nbr-full",
+                                        "dead-timer": 34
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GigabitEthernet4",
+                                "network-type": "ospf-broadcast",
+                                "enable": true,
+                                "passive": false,
+                                "demand-circuit": false,
+                                "mtu-ignore": false,
+                                "prefix-suppresion": false,
+                                "cost": 1,
+                                "hello-interval": 10,
+                                "dead-interval": 40,
+                                "retransmit-interval": 5,
+                                "transmit-delay": 1,
+                                "hello-timer": 6174,
+                                "wait-timer": 40000,
+                                "dr": 50529027,
+                                "bdr": 0,
+                                "dr-ip": "192.168.2.254",
+                                "bdr-ip": "0.0.0.0",
+                                "state": "ospfv2-interface-state-dr",
+                                "ttl-security-val": {
+                                    "enable": false,
+                                    "hops": 255
+                                },
+                                "auth-val": {
+                                    "no-auth": 1
+                                }
+                            },
+                            {
+                                "name": "GigabitEthernet3",
+                                "network-type": "ospf-broadcast",
+                                "enable": true,
+                                "passive": false,
+                                "demand-circuit": false,
+                                "mtu-ignore": false,
+                                "prefix-suppresion": false,
+                                "cost": 1,
+                                "hello-interval": 10,
+                                "dead-interval": 40,
+                                "retransmit-interval": 5,
+                                "transmit-delay": 1,
+                                "hello-timer": 6564,
+                                "wait-timer": 40000,
+                                "dr": 67372036,
+                                "bdr": 50529027,
+                                "dr-ip": "192.168.0.22",
+                                "bdr-ip": "192.168.0.21",
+                                "state": "ospfv2-interface-state-backup",
+                                "ttl-security-val": {
+                                    "enable": false,
+                                    "hops": 255
+                                },
+                                "auth-val": {
+                                    "no-auth": 1
+                                },
+                                "ospfv2-neighbor": [
+                                    {
+                                        "nbr-id": 67372036,
+                                        "address": "192.168.0.22",
+                                        "dr": 3232235542,
+                                        "bdr": 3232235541,
+                                        "dr-ip": "192.168.0.22",
+                                        "bdr-ip": "192.168.0.21",
+                                        "event-count": 6,
+                                        "retrans-count": 0,
+                                        "state": "ospf-nbr-full",
+                                        "dead-timer": 30
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GigabitEthernet2",
+                                "network-type": "ospf-broadcast",
+                                "enable": true,
+                                "passive": false,
+                                "demand-circuit": false,
+                                "mtu-ignore": false,
+                                "prefix-suppresion": false,
+                                "cost": 1,
+                                "hello-interval": 10,
+                                "dead-interval": 40,
+                                "retransmit-interval": 5,
+                                "transmit-delay": 1,
+                                "hello-timer": 5256,
+                                "wait-timer": 40000,
+                                "dr": 50529027,
+                                "bdr": 33686018,
+                                "dr-ip": "192.168.0.26",
+                                "bdr-ip": "192.168.0.25",
+                                "state": "ospfv2-interface-state-dr",
+                                "ttl-security-val": {
+                                    "enable": false,
+                                    "hops": 255
+                                },
+                                "auth-val": {
+                                    "no-auth": 1
+                                },
+                                "ospfv2-neighbor": [
+                                    {
+                                        "nbr-id": 33686018,
+                                        "address": "192.168.0.25",
+                                        "dr": 3232235546,
+                                        "bdr": 3232235545,
+                                        "dr-ip": "192.168.0.26",
+                                        "bdr-ip": "192.168.0.25",
+                                        "event-count": 12,
+                                        "retrans-count": 0,
+                                        "state": "ospf-nbr-full",
+                                        "dead-timer": 33
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
