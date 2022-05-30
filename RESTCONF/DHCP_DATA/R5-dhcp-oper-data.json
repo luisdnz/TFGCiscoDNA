@@ -1,69 +1,69 @@
 {
     "Cisco-IOS-XE-dhcp-oper:dhcpv4-server-oper": [
         {
-            "pool-name": "Pool3",
-            "client-ip": "192.168.3.1",
+            "pool-name": "Pool1",
+            "client-ip": "192.168.1.21",
             "vrf-name": "",
             "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.1b63.c8",
+            "client-id": "0152.5400.1d59.bc",
             "expiration": {
-                "time": "2022-05-29T10:28:31+00:00"
+                "time": "2022-05-30T10:57:53+00:00"
             },
             "type": "dhcp-server-binding-type-automatic",
             "state": "dhcp-server-binding-state-active",
-            "interface": "GigabitEthernet3"
+            "interface": "GigabitEthernet2"
         },
         {
             "pool-name": "Pool2",
             "client-ip": "192.168.2.1",
             "vrf-name": "",
             "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.19b4.77",
+            "client-id": "0152.5400.0787.89",
             "expiration": {
-                "time": "2022-05-29T10:29:22+00:00"
+                "time": "2022-05-30T11:19:25+00:00"
             },
             "type": "dhcp-server-binding-type-automatic",
             "state": "dhcp-server-binding-state-active",
             "interface": "GigabitEthernet5"
         },
         {
-            "pool-name": "Pool1",
-            "client-ip": "192.168.1.1",
+            "pool-name": "Pool3",
+            "client-ip": "192.168.3.1",
             "vrf-name": "",
             "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.0a55.ed",
+            "client-id": "0152.5400.0564.fd",
             "expiration": {
-                "time": "2022-05-29T10:29:54+00:00"
+                "time": "2022-05-30T11:19:31+00:00"
+            },
+            "type": "dhcp-server-binding-type-automatic",
+            "state": "dhcp-server-binding-state-active",
+            "interface": "GigabitEthernet3"
+        },
+        {
+            "pool-name": "Pool1",
+            "client-ip": "192.168.1.22",
+            "vrf-name": "",
+            "client-id-type": "dhcp-htype-ethernet",
+            "client-id": "0152.5400.05fb.db",
+            "expiration": {
+                "time": "2022-05-30T11:24:37+00:00"
             },
             "type": "dhcp-server-binding-type-automatic",
             "state": "dhcp-server-binding-state-active",
             "interface": "GigabitEthernet2"
         },
         {
-            "pool-name": "Pool1",
-            "client-ip": "192.168.1.2",
+            "pool-name": "Pool2",
+            "client-ip": "192.168.2.2",
             "vrf-name": "",
             "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.0e13.43",
+            "client-id": "0152.5400.1391.bd",
             "expiration": {
-                "time": "2022-05-29T10:38:23+00:00"
+                "time": "2022-05-30T20:54:53+00:00"
             },
             "type": "dhcp-server-binding-type-automatic",
             "state": "dhcp-server-binding-state-active",
-            "interface": "GigabitEthernet2"
-        },
-        {
-            "pool-name": "Pool1",
-            "client-ip": "192.168.1.21",
-            "vrf-name": "",
-            "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.0efd.a0",
-            "expiration": {
-                "time": "2022-05-29T10:53:43+00:00"
-            },
-            "type": "dhcp-server-binding-type-automatic",
-            "state": "dhcp-server-binding-state-active",
-            "interface": "GigabitEthernet2"
+            "interface": "GigabitEthernet5"
         }
     ]
 }

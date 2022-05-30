@@ -1,0 +1,536 @@
+{
+    "Cisco-IOS-XE-interfaces-oper:interfaces": {
+        "interface": [
+            {
+                "name": "GigabitEthernet1",
+                "interface-type": "iana-iftype-ethernet-csmacd",
+                "admin-status": "if-state-up",
+                "oper-status": "if-oper-state-ready",
+                "last-change": "2022-05-29T10:40:43.683+00:00",
+                "if-index": 1,
+                "phys-address": "52:54:00:19:b5:ce",
+                "speed": "1000000000",
+                "statistics": {
+                    "discontinuity-time": "2022-05-29T10:35:47+00:00",
+                    "in-octets": "137269",
+                    "in-unicast-pkts": "735",
+                    "in-broadcast-pkts": "0",
+                    "in-multicast-pkts": "0",
+                    "in-discards": 0,
+                    "in-errors": 0,
+                    "in-unknown-protos": 0,
+                    "out-octets": 63360,
+                    "out-unicast-pkts": "198",
+                    "out-broadcast-pkts": "0",
+                    "out-multicast-pkts": "0",
+                    "out-discards": "0",
+                    "out-errors": "0",
+                    "rx-pps": "0",
+                    "rx-kbps": "0",
+                    "tx-pps": "0",
+                    "tx-kbps": "0",
+                    "num-flaps": "0",
+                    "in-crc-errors": "0",
+                    "in-discards-64": "0",
+                    "in-errors-64": "0",
+                    "in-unknown-protos-64": "0",
+                    "out-octets-64": "63360"
+                },
+                "vrf": "Mgmt-intf",
+                "ipv4": "10.10.20.2",
+                "ipv4-subnet-mask": "255.255.255.0",
+                "description": "",
+                "mtu": 1500,
+                "input-security-acl": "",
+                "output-security-acl": "",
+                "v4-protocol-stats": {
+                    "in-pkts": "450",
+                    "in-octets": "87787",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "147",
+                    "out-octets": "52082",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "147",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "v6-protocol-stats": {
+                    "in-pkts": "0",
+                    "in-octets": "0",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "0",
+                    "out-octets": "0",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "0",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "bia-address": "52:54:00:19:b5:ce",
+                "ipv4-tcp-adjust-mss": 0,
+                "ipv6-tcp-adjust-mss": 0,
+                "storm-control": {
+                    "broadcast": {
+                        "filter-state": "inactive"
+                    },
+                    "multicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unknown-unicast": {
+                        "filter-state": "inactive"
+                    }
+                },
+                "ether-state": {
+                    "negotiated-duplex-mode": "full-duplex",
+                    "negotiated-port-speed": "speed-1gb",
+                    "auto-negotiate": true,
+                    "enable-flow-control": false,
+                    "media-type": "ether-media-type-virtual"
+                },
+                "ether-stats": {
+                    "in-mac-control-frames": "0",
+                    "in-mac-pause-frames": "0",
+                    "in-oversize-frames": "0",
+                    "in-jabber-frames": "0",
+                    "in-fragment-frames": "0",
+                    "in-8021q-frames": "0",
+                    "out-mac-control-frames": "0",
+                    "out-mac-pause-frames": "0",
+                    "out-8021q-frames": "0"
+                }
+            },
+            {
+                "name": "GigabitEthernet2",
+                "interface-type": "iana-iftype-ethernet-csmacd",
+                "admin-status": "if-state-up",
+                "oper-status": "if-oper-state-ready",
+                "last-change": "2022-05-29T10:52:56.713+00:00",
+                "if-index": 2,
+                "phys-address": "52:54:00:01:78:29",
+                "speed": "1000000000",
+                "statistics": {
+                    "discontinuity-time": "2022-05-29T10:35:47+00:00",
+                    "in-octets": "569381",
+                    "in-unicast-pkts": "5319",
+                    "in-broadcast-pkts": "0",
+                    "in-multicast-pkts": "0",
+                    "in-discards": 0,
+                    "in-errors": 0,
+                    "in-unknown-protos": 0,
+                    "out-octets": 574006,
+                    "out-unicast-pkts": "5177",
+                    "out-broadcast-pkts": "0",
+                    "out-multicast-pkts": "0",
+                    "out-discards": "0",
+                    "out-errors": "0",
+                    "rx-pps": "0",
+                    "rx-kbps": "0",
+                    "tx-pps": "0",
+                    "tx-kbps": "0",
+                    "num-flaps": "0",
+                    "in-crc-errors": "0",
+                    "in-discards-64": "0",
+                    "in-errors-64": "0",
+                    "in-unknown-protos-64": "0",
+                    "out-octets-64": "574006"
+                },
+                "vrf": "",
+                "ipv4": "192.168.0.18",
+                "ipv4-subnet-mask": "255.255.255.252",
+                "description": "",
+                "mtu": 1500,
+                "input-security-acl": "",
+                "output-security-acl": "",
+                "v4-protocol-stats": {
+                    "in-pkts": "5382",
+                    "in-octets": "581526",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "5110",
+                    "out-octets": "556834",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "5110",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "v6-protocol-stats": {
+                    "in-pkts": "0",
+                    "in-octets": "0",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "0",
+                    "out-octets": "0",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "0",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "bia-address": "52:54:00:01:78:29",
+                "ipv4-tcp-adjust-mss": 0,
+                "ipv6-tcp-adjust-mss": 0,
+                "storm-control": {
+                    "broadcast": {
+                        "filter-state": "inactive"
+                    },
+                    "multicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unknown-unicast": {
+                        "filter-state": "inactive"
+                    }
+                },
+                "ether-state": {
+                    "negotiated-duplex-mode": "full-duplex",
+                    "negotiated-port-speed": "speed-1gb",
+                    "auto-negotiate": true,
+                    "enable-flow-control": false,
+                    "media-type": "ether-media-type-virtual"
+                },
+                "ether-stats": {
+                    "in-mac-control-frames": "0",
+                    "in-mac-pause-frames": "0",
+                    "in-oversize-frames": "0",
+                    "in-jabber-frames": "0",
+                    "in-fragment-frames": "0",
+                    "in-8021q-frames": "0",
+                    "out-mac-control-frames": "0",
+                    "out-mac-pause-frames": "0",
+                    "out-8021q-frames": "0"
+                }
+            },
+            {
+                "name": "GigabitEthernet3",
+                "interface-type": "iana-iftype-ethernet-csmacd",
+                "admin-status": "if-state-up",
+                "oper-status": "if-oper-state-ready",
+                "last-change": "2022-05-29T10:52:56.743+00:00",
+                "if-index": 3,
+                "phys-address": "52:54:00:08:2d:74",
+                "speed": "1000000000",
+                "statistics": {
+                    "discontinuity-time": "2022-05-29T10:35:47+00:00",
+                    "in-octets": "378988",
+                    "in-unicast-pkts": "3274",
+                    "in-broadcast-pkts": "0",
+                    "in-multicast-pkts": "0",
+                    "in-discards": 0,
+                    "in-errors": 0,
+                    "in-unknown-protos": 0,
+                    "out-octets": 394194,
+                    "out-unicast-pkts": "3352",
+                    "out-broadcast-pkts": "0",
+                    "out-multicast-pkts": "0",
+                    "out-discards": "0",
+                    "out-errors": "0",
+                    "rx-pps": "0",
+                    "rx-kbps": "0",
+                    "tx-pps": "0",
+                    "tx-kbps": "0",
+                    "num-flaps": "0",
+                    "in-crc-errors": "0",
+                    "in-discards-64": "0",
+                    "in-errors-64": "0",
+                    "in-unknown-protos-64": "0",
+                    "out-octets-64": "394194"
+                },
+                "vrf": "",
+                "ipv4": "192.168.0.25",
+                "ipv4-subnet-mask": "255.255.255.252",
+                "description": "",
+                "mtu": 1500,
+                "input-security-acl": "",
+                "output-security-acl": "",
+                "v4-protocol-stats": {
+                    "in-pkts": "3258",
+                    "in-octets": "373916",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "3291",
+                    "out-octets": "377382",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "3291",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "v6-protocol-stats": {
+                    "in-pkts": "0",
+                    "in-octets": "0",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "0",
+                    "out-octets": "0",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "0",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "bia-address": "52:54:00:08:2d:74",
+                "ipv4-tcp-adjust-mss": 0,
+                "ipv6-tcp-adjust-mss": 0,
+                "storm-control": {
+                    "broadcast": {
+                        "filter-state": "inactive"
+                    },
+                    "multicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unknown-unicast": {
+                        "filter-state": "inactive"
+                    }
+                },
+                "ether-state": {
+                    "negotiated-duplex-mode": "full-duplex",
+                    "negotiated-port-speed": "speed-1gb",
+                    "auto-negotiate": true,
+                    "enable-flow-control": false,
+                    "media-type": "ether-media-type-virtual"
+                },
+                "ether-stats": {
+                    "in-mac-control-frames": "0",
+                    "in-mac-pause-frames": "0",
+                    "in-oversize-frames": "0",
+                    "in-jabber-frames": "0",
+                    "in-fragment-frames": "0",
+                    "in-8021q-frames": "0",
+                    "out-mac-control-frames": "0",
+                    "out-mac-pause-frames": "0",
+                    "out-8021q-frames": "0"
+                }
+            },
+            {
+                "name": "GigabitEthernet4",
+                "interface-type": "iana-iftype-ethernet-csmacd",
+                "admin-status": "if-state-up",
+                "oper-status": "if-oper-state-ready",
+                "last-change": "2022-05-29T10:52:56.744+00:00",
+                "if-index": 4,
+                "phys-address": "52:54:00:09:7e:49",
+                "speed": "1000000000",
+                "statistics": {
+                    "discontinuity-time": "2022-05-29T10:35:47+00:00",
+                    "in-octets": "1449732",
+                    "in-unicast-pkts": "18774",
+                    "in-broadcast-pkts": "0",
+                    "in-multicast-pkts": "0",
+                    "in-discards": 0,
+                    "in-errors": 0,
+                    "in-unknown-protos": 0,
+                    "out-octets": 568372,
+                    "out-unicast-pkts": "5439",
+                    "out-broadcast-pkts": "0",
+                    "out-multicast-pkts": "0",
+                    "out-discards": "0",
+                    "out-errors": "0",
+                    "rx-pps": "0",
+                    "rx-kbps": "0",
+                    "tx-pps": "0",
+                    "tx-kbps": "0",
+                    "num-flaps": "0",
+                    "in-crc-errors": "0",
+                    "in-discards-64": "0",
+                    "in-errors-64": "0",
+                    "in-unknown-protos-64": "0",
+                    "out-octets-64": "568372"
+                },
+                "vrf": "",
+                "ipv4": "192.168.1.254",
+                "ipv4-subnet-mask": "255.255.255.0",
+                "description": "",
+                "mtu": 1500,
+                "input-security-acl": "",
+                "output-security-acl": "",
+                "v4-protocol-stats": {
+                    "in-pkts": "2079",
+                    "in-octets": "231314",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "5310",
+                    "out-octets": "547530",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "5310",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "v6-protocol-stats": {
+                    "in-pkts": "0",
+                    "in-octets": "0",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "0",
+                    "out-octets": "0",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "0",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "bia-address": "52:54:00:09:7e:49",
+                "ipv4-tcp-adjust-mss": 0,
+                "ipv6-tcp-adjust-mss": 0,
+                "storm-control": {
+                    "broadcast": {
+                        "filter-state": "inactive"
+                    },
+                    "multicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unknown-unicast": {
+                        "filter-state": "inactive"
+                    }
+                },
+                "ether-state": {
+                    "negotiated-duplex-mode": "full-duplex",
+                    "negotiated-port-speed": "speed-1gb",
+                    "auto-negotiate": true,
+                    "enable-flow-control": false,
+                    "media-type": "ether-media-type-virtual"
+                },
+                "ether-stats": {
+                    "in-mac-control-frames": "0",
+                    "in-mac-pause-frames": "0",
+                    "in-oversize-frames": "0",
+                    "in-jabber-frames": "0",
+                    "in-fragment-frames": "0",
+                    "in-8021q-frames": "0",
+                    "out-mac-control-frames": "0",
+                    "out-mac-pause-frames": "0",
+                    "out-8021q-frames": "0"
+                }
+            },
+            {
+                "name": "GigabitEthernet5",
+                "interface-type": "iana-iftype-ethernet-csmacd",
+                "admin-status": "if-state-up",
+                "oper-status": "if-oper-state-ready",
+                "last-change": "2022-05-29T10:52:56.744+00:00",
+                "if-index": 5,
+                "phys-address": "52:54:00:0b:a2:8c",
+                "speed": "1000000000",
+                "statistics": {
+                    "discontinuity-time": "2022-05-29T10:35:47+00:00",
+                    "in-octets": "392094",
+                    "in-unicast-pkts": "3316",
+                    "in-broadcast-pkts": "0",
+                    "in-multicast-pkts": "0",
+                    "in-discards": 0,
+                    "in-errors": 0,
+                    "in-unknown-protos": 0,
+                    "out-octets": 393324,
+                    "out-unicast-pkts": "3358",
+                    "out-broadcast-pkts": "0",
+                    "out-multicast-pkts": "0",
+                    "out-discards": "0",
+                    "out-errors": "0",
+                    "rx-pps": "0",
+                    "rx-kbps": "0",
+                    "tx-pps": "0",
+                    "tx-kbps": "0",
+                    "num-flaps": "0",
+                    "in-crc-errors": "0",
+                    "in-discards-64": "0",
+                    "in-errors-64": "0",
+                    "in-unknown-protos-64": "0",
+                    "out-octets-64": "393324"
+                },
+                "vrf": "",
+                "ipv4": "192.168.0.9",
+                "ipv4-subnet-mask": "255.255.255.252",
+                "description": "",
+                "mtu": 1500,
+                "input-security-acl": "",
+                "output-security-acl": "",
+                "v4-protocol-stats": {
+                    "in-pkts": "3269",
+                    "in-octets": "376254",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "3297",
+                    "out-octets": "376566",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "3297",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "v6-protocol-stats": {
+                    "in-pkts": "0",
+                    "in-octets": "0",
+                    "in-error-pkts": "0",
+                    "in-forwarded-pkts": "0",
+                    "in-forwarded-octets": "0",
+                    "in-discarded-pkts": "0",
+                    "out-pkts": "0",
+                    "out-octets": "0",
+                    "out-error-pkts": "0",
+                    "out-forwarded-pkts": "0",
+                    "out-forwarded-octets": "0",
+                    "out-discarded-pkts": "0"
+                },
+                "bia-address": "52:54:00:0b:a2:8c",
+                "ipv4-tcp-adjust-mss": 0,
+                "ipv6-tcp-adjust-mss": 0,
+                "storm-control": {
+                    "broadcast": {
+                        "filter-state": "inactive"
+                    },
+                    "multicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unicast": {
+                        "filter-state": "inactive"
+                    },
+                    "unknown-unicast": {
+                        "filter-state": "inactive"
+                    }
+                },
+                "ether-state": {
+                    "negotiated-duplex-mode": "full-duplex",
+                    "negotiated-port-speed": "speed-1gb",
+                    "auto-negotiate": true,
+                    "enable-flow-control": false,
+                    "media-type": "ether-media-type-virtual"
+                },
+                "ether-stats": {
+                    "in-mac-control-frames": "0",
+                    "in-mac-pause-frames": "0",
+                    "in-oversize-frames": "0",
+                    "in-jabber-frames": "0",
+                    "in-fragment-frames": "0",
+                    "in-8021q-frames": "0",
+                    "out-mac-control-frames": "0",
+                    "out-mac-pause-frames": "0",
+                    "out-8021q-frames": "0"
+                }
+            }
+        ]
+    }
+}

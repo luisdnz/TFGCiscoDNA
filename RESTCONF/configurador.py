@@ -8,6 +8,7 @@ from DHCP_DATA.GetDhcpData import get_dhcp_data
 from RUNNING_CONFIG.GetRunningConfig import get_running_config
 from NAT_CONFIG.GetNatConfig import get_nat_config
 from NAT_DATA.GetNatData import get_nat_data
+from INTERFACE_DATA.GetInterfaceData import get_interfaces_data
 r1 = {
     'name':'R1',
     'ip':'10.10.20.100',
@@ -19,7 +20,7 @@ r1 = {
 
 r2 = {
     'name':'R2',
-    'ip':'10.10.20.2',
+    'ip':'10.10.20.102',
     'port':'443',
     'username':'cisco',
     'password':'cisco'
@@ -28,7 +29,7 @@ r2 = {
 
 r3 = {
     'name':'R3',
-    'ip':'10.10.20.3',
+    'ip':'10.10.20.106',
     'port':'443',
     'username':'cisco',
     'password':'cisco'
@@ -36,7 +37,7 @@ r3 = {
 
 r4 = {
     'name':'R4',
-    'ip':'10.10.20.4',
+    'ip':'10.10.20.104',
     'port':'443',
     'username':'cisco',
     'password':'cisco'
@@ -45,7 +46,7 @@ r4 = {
 
 r5 = {
     'name':'R5',
-    'ip':'10.10.20.5',
+    'ip':'10.10.20.107',
     'port':'443',
     'username':'cisco',
     'password':'cisco'
@@ -54,14 +55,15 @@ r5 = {
 routers = [r1,r2,r3,r4,r5]
 
 #for router in routers:
+#    get_interfaces_data(router)
 #get_interfaces_list(r1)
-#put_interfaces_list(r1)
+    #put_interfaces_list(router)
     #get_ospf_config(router)
-#put_ospf_config(r1)
+    #put_ospf_config(router)
 #get_running_config(r1)
     #get_running_config(router)
-get_nat_data(r1)
-get_nat_config(r1)
+#get_nat_data(r1)
+#get_nat_config(r1)
 #get_dhcp_data(r5)
 #get_dhcp_config(r5)
 #put_dhcp_config(r5)
