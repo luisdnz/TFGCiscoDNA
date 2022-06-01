@@ -21,50 +21,50 @@ from tkinter import ttk
 
 r1 = {
     'name':'R1',
-    'ip':'10.10.20.100',
+    'ip':'10.10.20.1',
     'port':'443',
     'username':'cisco',
     'password':'cisco',
-    'id' : '1.1.1.1'
+    'id' : "1.1.1.1"
 }
 
 
 r2 = {
     'name':'R2',
-    'ip':'10.10.20.102',
+    'ip':'10.10.20.2',
     'port':'443',
     'username':'cisco',
     'password':'cisco',
-    'id' : '2.2.2.2'
+    'id' : "2.2.2.2"
 }
 
 
 r3 = {
     'name':'R3',
-    'ip':'10.10.20.106',
+    'ip':'10.10.20.3',
     'port':'443',
     'username':'cisco',
     'password':'cisco',
-    'id' : '3.3.3.3'
+    'id' : "3.3.3.3"
 }
 
 r4 = {
     'name':'R4',
-    'ip':'10.10.20.104',
+    'ip':'10.10.20.4',
     'port':'443',
     'username':'cisco',
     'password':'cisco',
-    'id' : '4.4.4.4'
+    'id' : "4.4.4.4"
 }
 
 
 r5 = {
     'name':'R5',
-    'ip':'10.10.20.107',
+    'ip':'10.10.20.5',
     'port':'443',
     'username':'cisco',
     'password':'cisco',
-    'id' : '5.5.5.5'
+    'id' : "5.5.5.5"
 }
 
 routers = [r1,r2,r3,r4,r5]
@@ -179,9 +179,20 @@ class ClientGUI(Frame):
         self.parent = master
         self.grid()
         self.createWidgets()
+        self.IConfBut=None
+        self.DDataBut=None
+        self.NConfBut=None
+        self.IDataBut=None
+        self.OConfBut=None
+        self.ODataBut=None
+        self.NDataBut=None
+        self.DConfBut=None
+        self.LIBut=None
+        self.LDBut=None
+        self.RBut = None
     
     def createWidgets(self):
-        self.R1Button = Button(self, font=("Arial", 12), fg='Black', text="R1", highlightbackground='red', command=lambda: self.display_options("R1"))
+        self.R1Button = Button(self, font=("Arial", 12), fg='Black', text="R1", highlightbackground='red', command=lambda: self.display_unique_options("R1"))
         self.R1Button.config(height=2,width=10)
         self.R1Button.grid(row=1, column=0, sticky="nsew")
 
@@ -197,7 +208,7 @@ class ClientGUI(Frame):
         self.R4Button.config(height=2,width=10)
         self.R4Button.grid(row=4, column=0, sticky="nsew")
 
-        self.R5Button = Button(self, font=("Arial", 12), fg='Black', text="R5", highlightbackground='red', command=lambda: self.display_options("R5"))
+        self.R5Button = Button(self, font=("Arial", 12), fg='Black', text="R5", highlightbackground='red', command=lambda: self.display_unique_options("R5"))
         self.R5Button.config(height=2,width=10)
         self.R5Button.grid(row=5, column=0, sticky="nsew")
 
@@ -205,41 +216,127 @@ class ClientGUI(Frame):
         self.AButton.config(height=2,width=10)
         self.AButton.grid(row=6, column=0, sticky="nsew")
 
-    def display_options(self, r):
+        self.TButton = Button(self, font=("Arial", 12), fg='Black', text="Listeners", highlightbackground='red', command=lambda: self.display_listener_options())
+        self.TButton.config(height=2,width=10)
+        self.TButton.grid(row=7, column=0, sticky="nsew")
+
+    def deleteWidgets(self):
+            if self.IConfBut != None:
+                self.IConfBut.destroy()
+                self.IConfBut=None
+            if self.DDataBut != None:
+                self.DDataBut.destroy()
+                self.DDataBut=None
+            if self.NConfBut != None:
+                self.NConfBut.destroy()
+                self.NConfBut=None
+            if self.IDataBut != None:
+                self.IDataBut.destroy()
+                self.IDataBut=None
+            if self.OConfBut != None:
+                self.OConfBut.destroy()
+                self.OConfBut=None
+            if self.ODataBut != None:
+                self.ODataBut.destroy()
+                self.ODataBut=None
+            if self.NDataBut != None:
+                self.NDataBut.destroy()
+                self.NDataBut=None
+            if self.DConfBut != None:
+                self.DConfBut.destroy()
+                self.DConfBut=None
+            if self.LIBut != None:
+                self.LIBut.destroy()
+                self.LIBut=None
+            if self.LDBut != None:
+                self.LDBut.destroy()
+                self.LDBut=None
+            if self.RBut != None:
+                self.RBut.destroy()
+                self.RBut = None
+            
+
+
+    def display_unique_options(self,r):
+        self.deleteWidgets()
         self.IConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Config", highlightbackground='red', command=lambda: self.display_interface_config(r))
         self.IConfBut.config(height=2,width=15)
         self.IConfBut.grid(row=1, column=1, sticky="nsew")
 
-        self.DConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Config", highlightbackground='red', command=lambda: self.display_dhcp_config(r))
-        self.DConfBut.config(height=2,width=15)
-        self.DConfBut.grid(row=2, column=1, sticky="nsew")
+        if r == "R5":
+            self.DConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Config", highlightbackground='red', command=lambda: self.display_dhcp_config(r))
+            self.DConfBut.config(height=2,width=15)
+            self.DConfBut.grid(row=2, column=1, sticky="nsew")
 
-        self.NConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Config", highlightbackground='red', command=lambda: self.display_nat_config(r))
-        self.NConfBut.config(height=2,width=15)
-        self.NConfBut.grid(row=3, column=1, sticky="nsew")
+            self.DDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Data", highlightbackground='red', command=lambda: self.display_dhcp_data(r))
+            self.DDataBut.config(height=2,width=15)
+            self.DDataBut.grid(row=2, column=2, sticky="nsew")
+
+        if r == "R1":
+            self.NConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Config", highlightbackground='red', command=lambda: self.display_nat_config(r))
+            self.NConfBut.config(height=2,width=15)
+            self.NConfBut.grid(row=2, column=1, sticky="nsew")
+            self.NDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Data", highlightbackground='red', command=lambda: self.display_nat_data(r))
+            self.NDataBut.config(height=2,width=15)
+            self.NDataBut.grid(row=2, column=2, sticky="nsew")
 
         self.OConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Config", highlightbackground='red', command=lambda: self.display_ospf_config(r))
         self.OConfBut.config(height=2,width=15)
-        self.OConfBut.grid(row=4, column=1, sticky="nsew")
+        self.OConfBut.grid(row=3, column=1, sticky="nsew")
 
         self.IDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Data", highlightbackground='red', command=lambda: self.display_interf_data(r))
         self.IDataBut.config(height=2,width=15)
         self.IDataBut.grid(row=1, column=2, sticky="nsew")
 
-        self.DDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Data", highlightbackground='red', command=lambda: self.display_dhcp_data(r))
-        self.DDataBut.config(height=2,width=15)
-        self.DDataBut.grid(row=2, column=2, sticky="nsew")
+        self.ODataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Data", highlightbackground='red', command=lambda: self.display_ospf_data(r))
+        self.ODataBut.config(height=2,width=15)
+        self.ODataBut.grid(row=3, column=2, sticky="nsew")
 
-        self.NDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Data", highlightbackground='red', command=lambda: self.display_nat_data(r))
-        self.NDataBut.config(height=2,width=15)
-        self.NDataBut.grid(row=3, column=2, sticky="nsew")
+        self.RBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Routing", highlightbackground='red', command=lambda: self.display_routing(r))
+        self.RBut.config(height=2,width=15)
+        self.RBut.grid(row=4, column=1, sticky="nsew")
+
+    def display_options(self, r):
+        self.deleteWidgets()
+        self.IConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Config", highlightbackground='red', command=lambda: self.display_interface_config(r))
+        self.IConfBut.config(height=2,width=15)
+        self.IConfBut.grid(row=1, column=1, sticky="nsew")
+       
+        self.OConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Config", highlightbackground='red', command=lambda: self.display_ospf_config(r))
+        self.OConfBut.config(height=2,width=15)
+        self.OConfBut.grid(row=2, column=1, sticky="nsew")
+
+        self.IDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Data", highlightbackground='red', command=lambda: self.display_interf_data(r))
+        self.IDataBut.config(height=2,width=15)
+        self.IDataBut.grid(row=1, column=2, sticky="nsew")
 
         self.ODataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Data", highlightbackground='red', command=lambda: self.display_ospf_data(r))
         self.ODataBut.config(height=2,width=15)
-        self.ODataBut.grid(row=4, column=2, sticky="nsew")
+        self.ODataBut.grid(row=2, column=2, sticky="nsew")
+
+        if r!="All":
+            self.RBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Routing", highlightbackground='red', command=lambda: self.display_routing(r))
+            self.RBut.config(height=2,width=15)
+            self.RBut.grid(row=3, column=1, sticky="nsew")
 
 
+
+    def display_listener_options(self):
+        self.deleteWidgets()
+        self.LIBut = Button(self,font=("Arial", 12), fg='Black', text=f"Listener Interfaces", highlightbackground='red', command=lambda: self.display_listener_interf())
+        self.LIBut.config(height=2,width=15)
+        self.LIBut.grid(row=1, column=1, sticky="nsew")
+
+        self.LDBut = Button(self,font=("Arial", 12), fg='Black', text=f"Listener DHCP Pools", highlightbackground='red', command=lambda: self.display_interface_config(r))
+        self.LDBut.config(height=2,width=15)
+        self.LDBut.grid(row=1, column=2, sticky="nsew")
         
+
+    def display_listener_interf(self):
+        root = Tk()
+        text = Text(root,width=60,height = 2)
+        text.pack()
+        text.insert(INSERT,"Interface GigabitEthernet4 in R1 went from Up/Up to Down")
 
     
     def display_interface_config(self, r):
@@ -277,7 +374,7 @@ class ClientGUI(Frame):
             cabecera = ("Router","Interface", "Status", "IPv4", "Netmask", "IPv6", "Netmask")
             data = [("Router","Interface", "Status", "IPv4", "Netmask", "IPv6", "Netmask")]
             for router in routers:
-                #get_interfaces_list(router)
+                get_interfaces_list(router)
                 with open(f"INTERFACES_CONFIG/{router['name']}-interfaces-list-config.json", "r") as f:
                     json_i = json.loads(f.read())
                     
@@ -307,43 +404,87 @@ class ClientGUI(Frame):
                 self.tree.insert('',index = i, values=data[i])
     
     def display_dhcp_config(self, r):
-        for router in routers:
-            if r == router['name']:
-                get_dhcp_config(router)
-                with open(f"DHCP_CONFIG/{router['name']}-dhcp-config.json", "r") as f:
-                    json_d = json.loads(f.read())
-                
-                pools = [("Pool", "Default Router", "DNS Server", "Domain Name", "Network", "Mask")]
-                for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:pool"]:
-                    name = pool["id"]
-                    def_r = pool["default-router"]["default-router-list"][0]
-                    dns = pool["dns-server"]["dns-server-list"][0]
-                    d_name = pool["domain-name"]
-                    ip = pool["network"]["primary-network"]["number"]
-                    mask = pool["network"]["primary-network"]["mask"]
-                    pools.append((name,def_r,dns,d_name,ip,mask))
-                
-                excluded_adds = [("","Excluded Addresses", ""),("Pool1","Pool2","Pool3")]
-                i = 0
-                l_x = [0,0,0]
-                for l_excluded in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-address-list"]:
-                    l_x[i] = l_excluded["low-address"]
-                    i = i + 1
-                excluded_adds.append(tuple(l_x))
-                for h_excluded in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-high-address-list"]:
-                    l = h_excluded["low-address"]
-                    h = h_excluded["high-address"]
-                    x = (l +"-"+ h, "", "")
-                    excluded_adds.append(x)
-                for e in excluded_adds:
-                    pools.append(e)
-                self.tp = Toplevel()
-                self.tp.title('All Router Interfaces')
-                self.tree = ttk.Treeview(self.tp, height=len(pools), columns=[f"#{n}" for n in pools[0]])
-                self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
-                for i in range(len(pools)):
-                    self.tree.insert('',index = i, values=pools[i])
+        if r!="All":    
+            for router in routers:
+                if r == router['name']:
+                    get_dhcp_config(router)
+                    with open(f"DHCP_CONFIG/{router['name']}-dhcp-config.json", "r") as f:
+                        json_d = json.loads(f.read())
+                    dict_p = {}
+                    pools = [("Pool", "Default Router", "DNS Server", "Domain Name", "Network", "Mask")]
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:pool"]:
+                        name = pool["id"]
+                        def_r = pool["default-router"]["default-router-list"][0]
+                        dns = pool["dns-server"]["dns-server-list"][0]
+                        d_name = pool["domain-name"]
+                        ip = pool["network"]["primary-network"]["number"]
+                        mask = pool["network"]["primary-network"]["mask"]
+                        pools.append((name,def_r,dns,d_name,ip,mask))
+                        dict_p[ip]=[name]
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-address-list"]:
+                        for key in dict_p.keys():
+                            if pool["low-address"][0:9] in key:
+                                lista_excluded = dict_p[key]
+                                lista_excluded.append(pool["low-address"])
+                                dict_p[key] = lista_excluded
+                    
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-high-address-list"]:
+                        for key in dict_p.keys():
+                            if pool["low-address"][0:9] in key:
+                                lista_excluded = dict_p[key]
+                                lista_excluded.append(pool["low-address"] + " - " + pool["high-address"])
+                                dict_p[key] = lista_excluded
+                    pools.append(("Excluded Addresses"))
+                    for key in dict_p.keys():
+                        pools.append((dict_p[key]))
+                    self.tp = Toplevel()
+                    self.tp.title('All Router Interfaces')
+                    self.tree = ttk.Treeview(self.tp, height=len(pools), columns=[f"#{n}" for n in pools[0]])
+                    self.tree.config(show='headings')
+                    self.tree.grid(row=0, column=0)
+                    for i in range(len(pools)):
+                        self.tree.insert('',index = i, values=pools[i])
+        else:
+            for router in routers:
+                    get_dhcp_config(router)
+                    with open(f"DHCP_CONFIG/{router['name']}-dhcp-config.json", "r") as f:
+                        json_d = json.loads(f.read())
+                    dict_p = {}
+                    pools = [(router["name"],"Pool", "Default Router", "DNS Server", "Domain Name", "Network", "Mask")]
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:pool"]:
+                        name = pool["id"]
+                        def_r = pool["default-router"]["default-router-list"][0]
+                        dns = pool["dns-server"]["dns-server-list"][0]
+                        d_name = pool["domain-name"]
+                        ip = pool["network"]["primary-network"]["number"]
+                        mask = pool["network"]["primary-network"]["mask"]
+                        pools.append((name,def_r,dns,d_name,ip,mask))
+                        dict_p[ip]=[name]
+
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-address-list"]:
+                        for key in dict_p.keys():
+                            if pool["low-address"][0:9] in key:
+                                lista_excluded = dict_p[key]
+                                lista_excluded.append(pool["low-address"])
+                                dict_p[key] = lista_excluded
+                    
+                    for pool in json_d["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-high-address-list"]:
+                        for key in dict_p.keys():
+                            if pool["low-address"][0:9] in key:
+                                lista_excluded = dict_p[key]
+                                lista_excluded.append(pool["low-address"] + " - " + pool["high-address"])
+                                dict_p[key] = lista_excluded
+                    pools.append((router["Name"],"Excluded-Addresses"))
+                    for key in dict_p.keys():
+                        pools.append((dict_p[key]))
+            self.tp = Toplevel()
+            self.tp.title('All Router Interfaces')
+            self.tree = ttk.Treeview(self.tp, height=len(pools), columns=[f"#{n}" for n in pools[0]])
+            self.tree.config(show='headings')
+            self.tree.grid(row=0, column=0)
+            for i in range(len(pools)):
+                self.tree.insert('',index = i, values=pools[i])
+            
 
     def display_nat_config(self, r):
         for router in routers:
@@ -369,21 +510,45 @@ class ClientGUI(Frame):
                     self.tree.insert('',index = i, values=data[i])
 
     def display_ospf_config(self, r):
-        for router in routers:
-            if r == router['name']:
-                get_ospf_config(router)
-                with open(f"OSPF_CONFIG/{router['name']}-ospf-config.json", "r") as f:
-                    json_o = json.loads(f.read())
-                
-                data = [("Router", "Process ID", "Router ID", "Network", "Wildcard", "Area")]
-                for ospf in json_o["Cisco-IOS-XE-native:router"]["Cisco-IOS-XE-ospf:router-ospf"]["ospf"]["process-id"]:
-                    pid = ospf["id"]
-                    net = ospf["network"][0]["ip"]
-                    wc = ospf["network"][0]["wildcard"]
-                    area = ospf["network"][0]["area"]
-                    rid = ospf["router-id"]
-                    ospf_c = (r, pid, rid, net, wc,area)
-                    data.append(ospf_c)
+        if r != "All": 
+            for router in routers:
+                if r == router['name']:
+                    get_ospf_config(router)
+                    with open(f"OSPF_CONFIG/{router['name']}-ospf-config.json", "r") as f:
+                        json_o = json.loads(f.read())
+                    
+                    data = [("Router", "Process ID", "Router ID", "Network", "Wildcard", "Area")]
+                    for ospf in json_o["Cisco-IOS-XE-native:router"]["Cisco-IOS-XE-ospf:router-ospf"]["ospf"]["process-id"]:
+                        pid = ospf["id"]
+                        net = ospf["network"][0]["ip"]
+                        wc = ospf["network"][0]["wildcard"]
+                        area = ospf["network"][0]["area"]
+                        rid = ospf["router-id"]
+                        ospf_c = (r, pid, rid, net, wc,area)
+                        data.append(ospf_c)
+                    self.tp = Toplevel()
+                    self.tp.title('All Router Interfaces')
+                    self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
+                    self.tree.config(show='headings')
+                    self.tree.grid(row=0, column=0)
+                    for i in range(len(data)):
+                        self.tree.insert('',index = i, values=data[i])
+        else:
+                cabecera=("Router", "Process ID", "Router ID", "Network", "Wildcard", "Area")
+                data = [cabecera]
+                for router in routers:
+                    get_ospf_config(router)
+                    print(router["name"])
+                    with open(f"OSPF_CONFIG/{router['name']}-ospf-config.json", "r") as f:
+                        json_o = json.loads(f.read())
+                    for ospf in json_o["Cisco-IOS-XE-native:router"]["Cisco-IOS-XE-ospf:router-ospf"]["ospf"]["process-id"]:
+                        pid = ospf["id"]
+                        net = ospf["network"][0]["ip"]
+                        wc = ospf["network"][0]["wildcard"]
+                        area = ospf["network"][0]["area"]
+                        rid = ospf["router-id"]
+                        ospf_c = (router["name"], pid, rid, net, wc,area)
+                        data.append(ospf_c)                  
                 self.tp = Toplevel()
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
@@ -391,19 +556,80 @@ class ClientGUI(Frame):
                 self.tree.grid(row=0, column=0)
                 for i in range(len(data)):
                     self.tree.insert('',index = i, values=data[i])
+
     
     def display_interf_data(self, r):
-        for router in routers:
-            if r == router['name']:
+        if r!="All":
+            for router in routers:
+                if r == router['name']:
+                    get_interfaces_data(router)
+                    with open(f"INTERFACE_DATA/{router['name']}-interfaces-stats.json", "r") as f:
+                        json_o = json.loads(f.read())
+                    
+                    intf_names = [r]
+                    for intf in json_o["Cisco-IOS-XE-interfaces-oper:interfaces"]["interface"]:
+                        intf_names.append(intf["name"])
+                    
+                    data = [tuple(intf_names)]
+
+                    ip_l = ["IP"]
+                    mask_l = ["Mask"]
+                    duplex = ["Duplex Mode"]
+                    speed = ["Speed"]
+                    in_acl = ["Input ACL"]
+                    out_acl = ["Output ACL"]
+                    inpckts = ["In Packets"]
+                    outpckts = ["Out Packets"]
+                    indisc = ["In Discarded"]
+                    outdisc = ["Out Discarded"]
+                    inerr = ["In Errors"]
+                    outerr = ["Out Errors"]
+                    for intf in json_o["Cisco-IOS-XE-interfaces-oper:interfaces"]["interface"]:
+                        ip_l.append(intf["ipv4"])
+                        mask_l.append(intf["ipv4-subnet-mask"])
+                        duplex.append(intf["ether-state"]["negotiated-duplex-mode"])
+                        speed.append(intf["ether-state"]["negotiated-port-speed"])
+                        in_acl.append(intf["input-security-acl"])
+                        out_acl.append(intf["output-security-acl"])
+                        inpckts.append(intf["statistics"]["in-unicast-pkts"])
+                        outpckts.append(intf["statistics"]["in-unicast-pkts"])
+                        indisc.append(intf["statistics"]["in-discards"])
+                        outdisc.append(intf["statistics"]["out-discards"])
+                        inerr.append(intf["statistics"]["in-errors"])
+                        outerr.append(intf["statistics"]["out-errors"])
+
+                    data.append(tuple(ip_l))
+                    data.append(tuple(mask_l))
+                    data.append(tuple(duplex))
+                    data.append(tuple(speed))
+                    data.append(tuple(in_acl))
+                    data.append(tuple(out_acl))
+                    data.append(tuple(inpckts))
+                    data.append(tuple(outpckts))
+                    data.append(tuple(indisc))
+                    data.append(tuple(outdisc))
+                    data.append(tuple(inerr))
+                    data.append(tuple(outerr))
+                    self.tp = Toplevel()
+                    self.tp.title('All Router Interfaces')
+                    self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
+                    self.tree.config(show='headings')
+                    self.tree.grid(row=0, column=0)
+                    for i in range(len(data)):
+                        self.tree.insert('',index = i, values=data[i])
+        else:
+            data=[]
+            for router in routers:
+                intf_names = [router["name"]]
                 get_interfaces_data(router)
                 with open(f"INTERFACE_DATA/{router['name']}-interfaces-stats.json", "r") as f:
                     json_o = json.loads(f.read())
                 
-                intf_names = [r]
+                
                 for intf in json_o["Cisco-IOS-XE-interfaces-oper:interfaces"]["interface"]:
                     intf_names.append(intf["name"])
                 
-                data = [tuple(intf_names)]
+                data.append(tuple(intf_names))
 
                 ip_l = ["IP"]
                 mask_l = ["Mask"]
@@ -443,13 +669,13 @@ class ClientGUI(Frame):
                 data.append(tuple(outdisc))
                 data.append(tuple(inerr))
                 data.append(tuple(outerr))
-                self.tp = Toplevel()
-                self.tp.title('All Router Interfaces')
-                self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
-                self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
-                for i in range(len(data)):
-                    self.tree.insert('',index = i, values=data[i])
+            self.tp = Toplevel()
+            self.tp.title('All Router Interfaces')
+            self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
+            self.tree.config(show='headings')
+            self.tree.grid(row=0, column=0)
+            for i in range(len(data)):
+                self.tree.insert('',index = i, values=data[i])
 
     def display_dhcp_data(self, r):
         for router in routers:
@@ -523,53 +749,96 @@ class ClientGUI(Frame):
                     self.tree.insert('',index = i, values=d_t[i])
 
     def display_ospf_data(self,r):
-        if len(lsa_names.keys())==0:  
-            for router in routers:
-                get_ospf_data(router)
-                with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
-                    json_o = json.loads(f.read())
-                lsaid = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["router-id"]
-                lsa_names[lsaid] = router['name'] + "(" + router['id'] + ")"
-            f.close()
-            print(lsa_names)
-        if len(lsa_names.keys())>0:
-            for router in routers:
-                if r == router['name']:
+        if r!="All":
+            if len(lsa_names.keys())==0:  
+                for router in routers:
                     get_ospf_data(router)
-        
-        with open(f"OSPF_DATA/{r}-ospf.json", "r") as f:
-            json_o = json.loads(f.read())
+                    with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
+                        json_o = json.loads(f.read())
+                    lsaid = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["router-id"]
+                    lsa_names[lsaid] = router['name'] + "(" + router['id'] + ")"
+                f.close()
+                print(lsa_names)
+            if len(lsa_names.keys())>0:
+                for router in routers:
+                    if r == router['name']:
+                        get_ospf_data(router)
             
-        data = [("Area","Neighbor ID", "Cost", "State", "Address", "Interface")]
-        area = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["area-id"]
-        for neighbor in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["ospf-interface"]:
-            if "ospf-neighbor" in neighbor.keys():
-                nid = neighbor["ospf-neighbor"][0]["neighbor-id"]
-                cost = neighbor["cost"]
-                state = neighbor["state"]
-                addr = neighbor["ospf-neighbor"][0]["address"] 
-                interf = neighbor["name"]
-                data.append((area,nid,cost,state,addr,interf))
-            
-        data.append((f"{r} Link States Database","","","",""))
-        data.append(("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count"))
-        for dato in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospfv2-instance"][0]["ospfv2-area"][0]["ospfv2-lsdb-area"]:
-            if "router-lsa" in dato.keys():
-                lid = lsa_names[dato["lsa-id"]]
-                adv = lsa_names[dato["advertising-router"]]
-                tp = dato["lsa-type"]
-                age = dato["lsa-age"]
-                seq = str(dato["lsa-seq-number"]) + " | " + str(dato["lsa-checksum"])
-                lc = dato["router-lsa"]["router-lsa-number-links"]
-                data.append((lid,adv,tp,age,seq,lc))
-        self.tp = Toplevel()
-        self.tp.title('All Router Interfaces')
-        self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
-        self.tree.config(show='headings')
-        self.tree.grid(row=0, column=0)
-        for i in range(len(data)):
-            self.tree.insert('',index = i, values=data[i])
-    
+            with open(f"OSPF_DATA/{r}-ospf.json", "r") as f:
+                json_o = json.loads(f.read())
+                
+            data = [("Area","Neighbor ID", "Cost", "State", "Address", "Interface")]
+            area = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["area-id"]
+            for neighbor in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["ospf-interface"]:
+                if "ospf-neighbor" in neighbor.keys():
+                    nid = neighbor["ospf-neighbor"][0]["neighbor-id"]
+                    cost = neighbor["cost"]
+                    state = neighbor["state"]
+                    addr = neighbor["ospf-neighbor"][0]["address"] 
+                    interf = neighbor["name"]
+                    data.append((area,nid,cost,state,addr,interf))
+                
+            data.append((f"{r} Link States Database","","","",""))
+            data.append(("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count"))
+            for dato in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospfv2-instance"][0]["ospfv2-area"][0]["ospfv2-lsdb-area"]:
+                if "router-lsa" in dato.keys():
+                    lid = lsa_names[dato["lsa-id"]]
+                    adv = lsa_names[dato["advertising-router"]]
+                    tp = dato["lsa-type"]
+                    age = dato["lsa-age"]
+                    seq = str(dato["lsa-seq-number"]) + " | " + str(dato["lsa-checksum"])
+                    lc = dato["router-lsa"]["router-lsa-number-links"]
+                    data.append((lid,adv,tp,age,seq,lc))
+            self.tp = Toplevel()
+            self.tp.title('All Router Interfaces')
+            self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
+            self.tree.config(show='headings')
+            self.tree.grid(row=0, column=0)
+            for i in range(len(data)):
+                self.tree.insert('',index = i, values=data[i])
+        else:   
+                data = []
+                for router in routers:
+                    get_ospf_data(router)
+                    with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
+                        json_o = json.loads(f.read())
+                    lsaid = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["router-id"]
+                    lsa_names[lsaid] = router['name'] + "(" + router['id'] + ")"
+                f.close()
+                for router in routers:
+                    with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
+                        json_o = json.loads(f.read())
+                        
+                    data.append((router["name"],"Area","Neighbor ID", "Cost", "State", "Address", "Interface"))
+                    area = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["area-id"]
+                    for neighbor in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["ospf-interface"]:
+                        if "ospf-neighbor" in neighbor.keys():
+                            nid = neighbor["ospf-neighbor"][0]["neighbor-id"]
+                            cost = neighbor["cost"]
+                            state = neighbor["state"]
+                            addr = neighbor["ospf-neighbor"][0]["address"] 
+                            interf = neighbor["name"]
+                            data.append(("",area,nid,cost,state,addr,interf))
+                    print(lsa_names)
+                    data.append((f"{router['name']} Link States Database","","","",""))
+                    data.append(("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count"))
+                    for dato in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospfv2-instance"][0]["ospfv2-area"][0]["ospfv2-lsdb-area"]:
+                        if "router-lsa" in dato.keys():
+                            print(dato["lsa-id"])
+                            lid = lsa_names[dato["lsa-id"]]
+                            adv = lsa_names[dato["advertising-router"]]
+                            tp = dato["lsa-type"]
+                            age = dato["lsa-age"]
+                            seq = str(dato["lsa-seq-number"]) + " | " + str(dato["lsa-checksum"])
+                            lc = dato["router-lsa"]["router-lsa-number-links"]
+                            data.append((lid,adv,tp,age,seq,lc))
+                self.tp = Toplevel()
+                self.tp.title('All Router Interfaces')
+                self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
+                self.tree.config(show='headings')
+                self.tree.grid(row=0, column=0)
+                for i in range(len(data)):
+                    self.tree.insert('',index = i, values=data[i])
     
         
     

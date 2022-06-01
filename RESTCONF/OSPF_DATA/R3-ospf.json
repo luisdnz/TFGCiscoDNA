@@ -42,17 +42,17 @@
                                     "authentication": {
                                         "no-auth": 1
                                     },
-                                    "state": "DR",
-                                    "hello-timer": 5,
+                                    "state": "BDR",
+                                    "hello-timer": 9,
                                     "wait-timer": 40,
-                                    "dr": "3.3.3.3",
-                                    "bdr": "5.5.5.5",
+                                    "dr": "5.5.5.5",
+                                    "bdr": "3.3.3.3",
                                     "ospf-neighbor": [
                                         {
                                             "neighbor-id": "5.5.5.5",
                                             "address": "192.168.0.14",
-                                            "dr": "192.168.0.13",
-                                            "bdr": "192.168.0.14",
+                                            "dr": "192.168.0.14",
+                                            "bdr": "192.168.0.13",
                                             "state": "ospf-nbr-full",
                                             "stats": {
                                                 "nbr-event-count": 6,
@@ -95,7 +95,7 @@
                                         "no-auth": 1
                                     },
                                     "state": "DR",
-                                    "hello-timer": 4,
+                                    "hello-timer": 5,
                                     "wait-timer": 40,
                                     "dr": "3.3.3.3",
                                     "bdr": "0.0.0.0",
@@ -134,7 +134,7 @@
                                         "no-auth": 1
                                     },
                                     "state": "BDR",
-                                    "hello-timer": 8,
+                                    "hello-timer": 9,
                                     "wait-timer": 40,
                                     "dr": "4.4.4.4",
                                     "bdr": "3.3.3.3",
@@ -185,17 +185,17 @@
                                     "authentication": {
                                         "no-auth": 1
                                     },
-                                    "state": "BDR",
-                                    "hello-timer": 6,
+                                    "state": "DR",
+                                    "hello-timer": 4,
                                     "wait-timer": 40,
-                                    "dr": "2.2.2.2",
-                                    "bdr": "3.3.3.3",
+                                    "dr": "3.3.3.3",
+                                    "bdr": "2.2.2.2",
                                     "ospf-neighbor": [
                                         {
                                             "neighbor-id": "2.2.2.2",
                                             "address": "192.168.0.25",
-                                            "dr": "192.168.0.25",
-                                            "bdr": "192.168.0.26",
+                                            "dr": "192.168.0.26",
+                                            "bdr": "192.168.0.25",
                                             "state": "ospf-nbr-full",
                                             "stats": {
                                                 "nbr-event-count": 6,
@@ -225,20 +225,20 @@
                                 "lsa-type": 1,
                                 "lsa-id": 16843009,
                                 "advertising-router": 16843009,
-                                "lsa-age": 1111,
+                                "lsa-age": 506,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483657,
-                                "lsa-checksum": 8998,
+                                "lsa-seq-number": 2147483662,
+                                "lsa-checksum": 14601,
                                 "lsa-length": 48,
                                 "ospfv2-router-lsa-links": [
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235537,
+                                        "link-id": 3232235538,
                                         "link-data": 3232235537
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235521,
+                                        "link-id": 3232235522,
                                         "link-data": 3232235521
                                     }
                                 ],
@@ -251,15 +251,15 @@
                                 "lsa-type": 1,
                                 "lsa-id": 33686018,
                                 "advertising-router": 33686018,
-                                "lsa-age": 1134,
+                                "lsa-age": 524,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483659,
-                                "lsa-checksum": 51412,
+                                "lsa-seq-number": 2147483664,
+                                "lsa-checksum": 6524,
                                 "lsa-length": 72,
                                 "ospfv2-router-lsa-links": [
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235529,
+                                        "link-id": 3232235530,
                                         "link-data": 3232235529
                                     },
                                     {
@@ -269,12 +269,12 @@
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235545,
+                                        "link-id": 3232235546,
                                         "link-data": 3232235545
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235537,
+                                        "link-id": 3232235538,
                                         "link-data": 3232235538
                                     }
                                 ],
@@ -287,15 +287,15 @@
                                 "lsa-type": 1,
                                 "lsa-id": 50529027,
                                 "advertising-router": 50529027,
-                                "lsa-age": 1236,
+                                "lsa-age": 531,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483660,
-                                "lsa-checksum": 62350,
+                                "lsa-seq-number": 2147483664,
+                                "lsa-checksum": 9304,
                                 "lsa-length": 72,
                                 "ospfv2-router-lsa-links": [
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235533,
+                                        "link-id": 3232235534,
                                         "link-data": 3232235533
                                     },
                                     {
@@ -310,7 +310,7 @@
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235545,
+                                        "link-id": 3232235546,
                                         "link-data": 3232235546
                                     }
                                 ],
@@ -323,10 +323,10 @@
                                 "lsa-type": 1,
                                 "lsa-id": 67372036,
                                 "advertising-router": 67372036,
-                                "lsa-age": 1257,
+                                "lsa-age": 495,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483658,
-                                "lsa-checksum": 3985,
+                                "lsa-seq-number": 2147483661,
+                                "lsa-checksum": 11121,
                                 "lsa-length": 60,
                                 "ospfv2-router-lsa-links": [
                                     {
@@ -341,7 +341,7 @@
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235525,
+                                        "link-id": 3232235526,
                                         "link-data": 3232235525
                                     }
                                 ],
@@ -354,30 +354,30 @@
                                 "lsa-type": 1,
                                 "lsa-id": 84215045,
                                 "advertising-router": 84215045,
-                                "lsa-age": 1005,
+                                "lsa-age": 558,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483662,
-                                "lsa-checksum": 33730,
+                                "lsa-seq-number": 2147483663,
+                                "lsa-checksum": 61775,
                                 "lsa-length": 72,
                                 "ospfv2-router-lsa-links": [
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235533,
+                                        "link-id": 3232235534,
                                         "link-data": 3232235534
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235529,
+                                        "link-id": 3232235530,
                                         "link-data": 3232235530
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235525,
+                                        "link-id": 3232235526,
                                         "link-data": 3232235526
                                     },
                                     {
                                         "link-type": 2,
-                                        "link-id": 3232235521,
+                                        "link-id": 3232235522,
                                         "link-data": 3232235522
                                     }
                                 ],
@@ -388,12 +388,12 @@
                             },
                             {
                                 "lsa-type": 2,
-                                "lsa-id": 3232235521,
-                                "advertising-router": 16843009,
-                                "lsa-age": 1111,
+                                "lsa-id": 3232235522,
+                                "advertising-router": 84215045,
+                                "lsa-age": 558,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 51433,
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 65438,
                                 "lsa-length": 32,
                                 "network-lsa": {
                                     "network-lsa-mask": 4294967292
@@ -401,12 +401,12 @@
                             },
                             {
                                 "lsa-type": 2,
-                                "lsa-id": 3232235525,
-                                "advertising-router": 67372036,
-                                "lsa-age": 1257,
+                                "lsa-id": 3232235526,
+                                "advertising-router": 84215045,
+                                "lsa-age": 558,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 44265,
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 28192,
                                 "lsa-length": 32,
                                 "network-lsa": {
                                     "network-lsa-mask": 4294967292
@@ -414,38 +414,38 @@
                             },
                             {
                                 "lsa-type": 2,
-                                "lsa-id": 3232235529,
+                                "lsa-id": 3232235530,
+                                "advertising-router": 84215045,
+                                "lsa-age": 558,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 57776,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235534,
+                                "advertising-router": 84215045,
+                                "lsa-age": 558,
+                                "lsa-options": "",
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 60318,
+                                "lsa-length": 32,
+                                "network-lsa": {
+                                    "network-lsa-mask": 4294967292
+                                }
+                            },
+                            {
+                                "lsa-type": 2,
+                                "lsa-id": 3232235538,
                                 "advertising-router": 33686018,
-                                "lsa-age": 1134,
+                                "lsa-age": 524,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 31782,
-                                "lsa-length": 32,
-                                "network-lsa": {
-                                    "network-lsa-mask": 4294967292
-                                }
-                            },
-                            {
-                                "lsa-type": 2,
-                                "lsa-id": 3232235533,
-                                "advertising-router": 50529027,
-                                "lsa-age": 1236,
-                                "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 22590,
-                                "lsa-length": 32,
-                                "network-lsa": {
-                                    "network-lsa-mask": 4294967292
-                                }
-                            },
-                            {
-                                "lsa-type": 2,
-                                "lsa-id": 3232235537,
-                                "advertising-router": 16843009,
-                                "lsa-age": 1359,
-                                "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 37149,
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 21331,
                                 "lsa-length": 32,
                                 "network-lsa": {
                                     "network-lsa-mask": 4294967292
@@ -455,10 +455,10 @@
                                 "lsa-type": 2,
                                 "lsa-id": 3232235542,
                                 "advertising-router": 67372036,
-                                "lsa-age": 1257,
+                                "lsa-age": 495,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 40431,
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 38898,
                                 "lsa-length": 32,
                                 "network-lsa": {
                                     "network-lsa-mask": 4294967292
@@ -466,12 +466,12 @@
                             },
                             {
                                 "lsa-type": 2,
-                                "lsa-id": 3232235545,
-                                "advertising-router": 33686018,
-                                "lsa-age": 1381,
+                                "lsa-id": 3232235546,
+                                "advertising-router": 50529027,
+                                "lsa-age": 531,
                                 "lsa-options": "",
-                                "lsa-seq-number": 2147483653,
-                                "lsa-checksum": 30499,
+                                "lsa-seq-number": 2147483656,
+                                "lsa-checksum": 14681,
                                 "lsa-length": 32,
                                 "network-lsa": {
                                     "network-lsa-mask": 4294967292
@@ -492,13 +492,13 @@
                                 "dead-interval": 40,
                                 "retransmit-interval": 5,
                                 "transmit-delay": 1,
-                                "hello-timer": 4586,
+                                "hello-timer": 8641,
                                 "wait-timer": 40000,
-                                "dr": 50529027,
-                                "bdr": 84215045,
-                                "dr-ip": "192.168.0.13",
-                                "bdr-ip": "192.168.0.14",
-                                "state": "ospfv2-interface-state-dr",
+                                "dr": 84215045,
+                                "bdr": 50529027,
+                                "dr-ip": "192.168.0.14",
+                                "bdr-ip": "192.168.0.13",
+                                "state": "ospfv2-interface-state-backup",
                                 "ttl-security-val": {
                                     "enable": false,
                                     "hops": 255
@@ -510,14 +510,14 @@
                                     {
                                         "nbr-id": 84215045,
                                         "address": "192.168.0.14",
-                                        "dr": 3232235533,
-                                        "bdr": 3232235534,
-                                        "dr-ip": "192.168.0.13",
-                                        "bdr-ip": "192.168.0.14",
+                                        "dr": 3232235534,
+                                        "bdr": 3232235533,
+                                        "dr-ip": "192.168.0.14",
+                                        "bdr-ip": "192.168.0.13",
                                         "event-count": 6,
                                         "retrans-count": 0,
                                         "state": "ospf-nbr-full",
-                                        "dead-timer": 35
+                                        "dead-timer": 38
                                     }
                                 ]
                             },
@@ -534,7 +534,7 @@
                                 "dead-interval": 40,
                                 "retransmit-interval": 5,
                                 "transmit-delay": 1,
-                                "hello-timer": 3689,
+                                "hello-timer": 4651,
                                 "wait-timer": 40000,
                                 "dr": 50529027,
                                 "bdr": 0,
@@ -562,7 +562,7 @@
                                 "dead-interval": 40,
                                 "retransmit-interval": 5,
                                 "transmit-delay": 1,
-                                "hello-timer": 7671,
+                                "hello-timer": 8736,
                                 "wait-timer": 40000,
                                 "dr": 67372036,
                                 "bdr": 50529027,
@@ -587,7 +587,7 @@
                                         "event-count": 6,
                                         "retrans-count": 0,
                                         "state": "ospf-nbr-full",
-                                        "dead-timer": 31
+                                        "dead-timer": 38
                                     }
                                 ]
                             },
@@ -604,13 +604,13 @@
                                 "dead-interval": 40,
                                 "retransmit-interval": 5,
                                 "transmit-delay": 1,
-                                "hello-timer": 6334,
+                                "hello-timer": 3836,
                                 "wait-timer": 40000,
-                                "dr": 33686018,
-                                "bdr": 50529027,
-                                "dr-ip": "192.168.0.25",
-                                "bdr-ip": "192.168.0.26",
-                                "state": "ospfv2-interface-state-backup",
+                                "dr": 50529027,
+                                "bdr": 33686018,
+                                "dr-ip": "192.168.0.26",
+                                "bdr-ip": "192.168.0.25",
+                                "state": "ospfv2-interface-state-dr",
                                 "ttl-security-val": {
                                     "enable": false,
                                     "hops": 255
@@ -622,14 +622,14 @@
                                     {
                                         "nbr-id": 33686018,
                                         "address": "192.168.0.25",
-                                        "dr": 3232235545,
-                                        "bdr": 3232235546,
-                                        "dr-ip": "192.168.0.25",
-                                        "bdr-ip": "192.168.0.26",
+                                        "dr": 3232235546,
+                                        "bdr": 3232235545,
+                                        "dr-ip": "192.168.0.26",
+                                        "bdr-ip": "192.168.0.25",
                                         "event-count": 6,
                                         "retrans-count": 0,
                                         "state": "ospf-nbr-full",
-                                        "dead-timer": 38
+                                        "dead-timer": 33
                                     }
                                 ]
                             }
