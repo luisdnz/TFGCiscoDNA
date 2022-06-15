@@ -26,6 +26,20 @@
                             "routes": {
                                 "route": [
                                     {
+                                        "destination-prefix": "0.0.0.0/0",
+                                        "route-preference": 1,
+                                        "metric": 1,
+                                        "next-hop": {
+                                            "outgoing-interface": "",
+                                            "next-hop-address": "192.168.0.17"
+                                        },
+                                        "source-protocol": "ietf-routing:static",
+                                        "active": [
+                                            null
+                                        ],
+                                        "update-source": "0.0.0.0"
+                                    },
+                                    {
                                         "destination-prefix": "192.168.0.0/30",
                                         "route-preference": 110,
                                         "metric": 110,

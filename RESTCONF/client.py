@@ -1,4 +1,6 @@
 
+from threading import Thread
+import time
 from INTERFACES_CONFIG.GetInterfacesList import get_interfaces_list
 from OSPF_DATA.GetOspfData import get_ospf_data
 from OSPF_CONFIG.GetOspfConfig import get_ospf_config
@@ -11,6 +13,7 @@ from DHCP_DATA.GetDhcpData import get_dhcp_data
 from RESOURCES import *
 from ROUTING.GetRouting import get_routing
 
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import json
@@ -18,6 +21,8 @@ import pprint
 
 from tkinter import * 
 from tkinter import ttk
+from PIL import Image,ImageTk
+from tkinter import Tk, PhotoImage, Label
 
 r1 = {
     'name':'R1',
@@ -69,77 +74,13 @@ r5 = {
 
 routers = [r1,r2,r3,r4,r5]
 lsa_names  = {}
+dhcppools = {
+    "Pool1" : [],
+    "Pool2" : [],
+    "Pool3" : []
+}
 
-def plot_spf_tree(router):
-    G = nx.Graph()
-    G.add_node(r1['name'])
-    edge_labels = {}
-    
-    with open(f"ROUTING/{router['name']}-routing.json", "r") as f:
-        routingjson = json.loads(f.read())
-    
-    routes = routingjson["ietf-routing:routing-state"]["routing-instance"][0]["ribs"]["rib"][0]["routes"]["route"]
-    pprint.pprint(routes)
 
-    for route in routes:
-        if not "/32" in route["destination-prefix"]:
-            dest = route["destination-prefix"]
-            interface = route["next-hop"]["outgoing-interface"]
-            if "ietf-ospf:ospfv2" == route["source-protocol"]:
-                protocol = "O"
-                nhop = route["next-hop"]["next-hop-address"]
-                metric = route["metric"]
-                
-            else:
-                protocol = "D"
-                G.add_node(dest)
-                G.add_edge(r1['name'],dest)
-                edge_labels[(r1['name'],dest)] = (interface,protocol)
-
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos=pos, with_labels=True, edgelist=list(G.edges()), node_size=600)
-    nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels)
-    plt.axis('off')
-    plt.show()
-
-    
-def plot_spf_tree2(router):
-    G = nx.Graph()
-    G.add_node(r1['name'])
-    edge_labels = {}
-    
-    with open(f"ROUTING/{router['name']}-routing.json", "r") as f:
-        routingjson = json.loads(f.read())
-    
-    routes = routingjson["ietf-routing:routing-state"]["routing-instance"][0]["ribs"]["rib"][0]["routes"]["route"]
-    pprint.pprint(routes)
-
-    #Adding directly connected nodes
-    for route in routes:
-        if not "/32" in route["destination-prefix"]:
-            dest = route["destination-prefix"]
-            interface = route["next-hop"]["outgoing-interface"]
-            if "ietf-routing:direct" == route["source-protocol"]:
-                protocol = "D"
-                G.add_node(dest)
-                G.add_edge(r1['name'],dest)
-                edge_labels[(r1['name'],dest)] = (interface,protocol)               
-
-    #Adding indirectly connected nodes
-    for route in routes:
-        if not "/32" in route["destination-prefix"]:
-            dest = route["destination-prefix"]
-            interface = route["next-hop"]["outgoing-interface"]
-            if "ietf-ospf:ospfv2" == route["source-protocol"]:
-                protocol = "D"
-                G.add_node(dest)
-                G.add_edge(r1['name'],dest)
-                edge_labels[(r1['name'],dest)] = (interface,protocol)
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos=pos, with_labels=True, edgelist=list(G.edges()), node_size=600)
-    nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels)
-    plt.axis('off')
-    plt.show()
 
 def transpose_2nlist(l):
     l2 = []
@@ -151,24 +92,6 @@ def transpose_2nlist(l):
     return l2
 
 
-
-
-
-class Table: 
-    def __init__(self,root,data,n_rows,n_columns): 
-        for i in range(n_rows): 
-            for j in range(len(data[i])): 
-                  
-                self.e = Entry(root, width=22, fg='blue', 
-                               font=('Arial',16,'bold')) 
-                  
-                self.e.grid(row=i, column=j) 
-                self.e.insert(END, data[i][j]) 
-        
-
-  
- 
-    
    
 
 
@@ -177,8 +100,6 @@ class ClientGUI(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args,**kwargs)
         self.parent = master
-        self.grid()
-        self.createWidgets()
         self.IConfBut=None
         self.DDataBut=None
         self.NConfBut=None
@@ -189,36 +110,8 @@ class ClientGUI(Frame):
         self.DConfBut=None
         self.LIBut=None
         self.LDBut=None
-        self.RBut = None
-    
-    def createWidgets(self):
-        self.R1Button = Button(self, font=("Arial", 12), fg='Black', text="R1", highlightbackground='red', command=lambda: self.display_unique_options("R1"))
-        self.R1Button.config(height=2,width=10)
-        self.R1Button.grid(row=1, column=0, sticky="nsew")
-
-        self.R2Button = Button(self, font=("Arial", 12), fg='Black', text="R2", highlightbackground='red', command=lambda: self.display_options("R2"))
-        self.R2Button.config(height=2,width=10)
-        self.R2Button.grid(row=2, column=0, sticky="nsew")
-
-        self.R3Button = Button(self, font=("Arial", 12), fg='Black', text="R3", highlightbackground='red', command=lambda: self.display_options("R3"))
-        self.R3Button.config(height=2,width=10)
-        self.R3Button.grid(row=3, column=0, sticky="nsew")
-
-        self.R4Button = Button(self, font=("Arial", 12), fg='Black', text="R4", highlightbackground='red', command=lambda: self.display_options("R4"))
-        self.R4Button.config(height=2,width=10)
-        self.R4Button.grid(row=4, column=0, sticky="nsew")
-
-        self.R5Button = Button(self, font=("Arial", 12), fg='Black', text="R5", highlightbackground='red', command=lambda: self.display_unique_options("R5"))
-        self.R5Button.config(height=2,width=10)
-        self.R5Button.grid(row=5, column=0, sticky="nsew")
-
-        self.AButton = Button(self, font=("Arial", 12), fg='Black', text="All", highlightbackground='red', command=lambda: self.display_options("All"))
-        self.AButton.config(height=2,width=10)
-        self.AButton.grid(row=6, column=0, sticky="nsew")
-
-        self.TButton = Button(self, font=("Arial", 12), fg='Black', text="Listeners", highlightbackground='red', command=lambda: self.display_listener_options())
-        self.TButton.config(height=2,width=10)
-        self.TButton.grid(row=7, column=0, sticky="nsew")
+        self.RBut = None   
+        
 
     def deleteWidgets(self):
             if self.IConfBut != None:
@@ -254,90 +147,249 @@ class ClientGUI(Frame):
             if self.RBut != None:
                 self.RBut.destroy()
                 self.RBut = None
-            
-
-
-    def display_unique_options(self,r):
-        self.deleteWidgets()
-        self.IConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Config", highlightbackground='red', command=lambda: self.display_interface_config(r))
-        self.IConfBut.config(height=2,width=15)
-        self.IConfBut.grid(row=1, column=1, sticky="nsew")
-
-        if r == "R5":
-            self.DConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Config", highlightbackground='red', command=lambda: self.display_dhcp_config(r))
-            self.DConfBut.config(height=2,width=15)
-            self.DConfBut.grid(row=2, column=1, sticky="nsew")
-
-            self.DDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} DHCP Data", highlightbackground='red', command=lambda: self.display_dhcp_data(r))
-            self.DDataBut.config(height=2,width=15)
-            self.DDataBut.grid(row=2, column=2, sticky="nsew")
-
-        if r == "R1":
-            self.NConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Config", highlightbackground='red', command=lambda: self.display_nat_config(r))
-            self.NConfBut.config(height=2,width=15)
-            self.NConfBut.grid(row=2, column=1, sticky="nsew")
-            self.NDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} NAT Data", highlightbackground='red', command=lambda: self.display_nat_data(r))
-            self.NDataBut.config(height=2,width=15)
-            self.NDataBut.grid(row=2, column=2, sticky="nsew")
-
-        self.OConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Config", highlightbackground='red', command=lambda: self.display_ospf_config(r))
-        self.OConfBut.config(height=2,width=15)
-        self.OConfBut.grid(row=3, column=1, sticky="nsew")
-
-        self.IDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Data", highlightbackground='red', command=lambda: self.display_interf_data(r))
-        self.IDataBut.config(height=2,width=15)
-        self.IDataBut.grid(row=1, column=2, sticky="nsew")
-
-        self.ODataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Data", highlightbackground='red', command=lambda: self.display_ospf_data(r))
-        self.ODataBut.config(height=2,width=15)
-        self.ODataBut.grid(row=3, column=2, sticky="nsew")
-
-        self.RBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Routing", highlightbackground='red', command=lambda: self.display_routing(r))
-        self.RBut.config(height=2,width=15)
-        self.RBut.grid(row=4, column=1, sticky="nsew")
 
     def display_options(self, r):
         self.deleteWidgets()
-        self.IConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Config", highlightbackground='red', command=lambda: self.display_interface_config(r))
-        self.IConfBut.config(height=2,width=15)
-        self.IConfBut.grid(row=1, column=1, sticky="nsew")
-       
-        self.OConfBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Config", highlightbackground='red', command=lambda: self.display_ospf_config(r))
-        self.OConfBut.config(height=2,width=15)
-        self.OConfBut.grid(row=2, column=1, sticky="nsew")
+        
+        self.NConfBut = Button(font=("Arial", 8), fg='Black', text=f"{r} NAT Config", highlightbackground='red', command=lambda: self.display_nat_config(r))
+        self.NConfBut.config(height=1,width=15)
+        
+        self.NDataBut = Button(font=("Arial", 8), fg='Black', text=f"{r} NAT Data", highlightbackground='red', command=lambda: self.display_nat_data(r))
+        self.NDataBut.config(height=1,width=15)
+        
+        self.IConfBut = Button(font=("Arial", 8), fg='Black', text=f"{r} Interfaces Config", highlightbackground='red', command=lambda: self.display_interface_config(r))
+        self.IConfBut.config(height=1,width=15)
+        
+        self.OConfBut = Button(font=("Arial", 8), fg='Black', text=f"{r} OSPF Config", highlightbackground='red', command=lambda: self.display_ospf_config(r))
+        self.OConfBut.config(height=1,width=15)
+        
+        self.IDataBut = Button(font=("Arial", 8), fg='Black', text=f"{r} Interfaces Data", highlightbackground='red', command=lambda: self.display_interf_data(r))
+        self.IDataBut.config(height=1,width=15)
+        
+        self.ODataBut = Button(font=("Arial", 8), fg='Black', text=f"{r} OSPF Data", highlightbackground='red', command=lambda: self.display_ospf_data(r))
+        self.ODataBut.config(height=1,width=15)
 
-        self.IDataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Interfaces Data", highlightbackground='red', command=lambda: self.display_interf_data(r))
-        self.IDataBut.config(height=2,width=15)
-        self.IDataBut.grid(row=1, column=2, sticky="nsew")
+        self.DConfBut = Button(font=("Arial", 8), fg='Black', text=f"{r} DHCP Config", highlightbackground='red', command=lambda: self.display_dhcp_config(r))
+        self.DConfBut.config(height=1,width=15)
 
-        self.ODataBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} OSPF Data", highlightbackground='red', command=lambda: self.display_ospf_data(r))
-        self.ODataBut.config(height=2,width=15)
-        self.ODataBut.grid(row=2, column=2, sticky="nsew")
+        self.DDataBut = Button(font=("Arial", 8), fg='Black', text=f"{r} DHCP Data", highlightbackground='red', command=lambda: self.display_dhcp_data(r))
+        self.DDataBut.config(height=1,width=15)
 
-        if r!="All":
-            self.RBut = Button(self,font=("Arial", 12), fg='Black', text=f"{r} Routing", highlightbackground='red', command=lambda: self.display_routing(r))
-            self.RBut.config(height=2,width=15)
-            self.RBut.grid(row=3, column=1, sticky="nsew")
+        self.RBut = Button(font=("Arial", 8), fg='Black', text=f"{r} Routing Graph", highlightbackground='red', command=lambda: self.plot_spf_tree2(r))
+        self.RBut.config(height=1,width=15)
 
+        if r=="R1":
+            self.IConfBut.place(x=111,y=221)
+            self.OConfBut.place(x=111,y=244)
+            self.IDataBut.place(x=111,y=267)
+            self.ODataBut.place(x=111,y=290)
+            self.NConfBut.place(x=111,y=313)
+            self.NDataBut.place(x=111,y=336)
+            self.RBut.place(x=111,y=359)
+        elif r=="R2":
+            self.IConfBut.place(x=113,y=438)
+            self.OConfBut.place(x=113,y=461)
+            self.IDataBut.place(x=113,y=483)
+            self.ODataBut.place(x=113,y=506)
+            self.RBut.place(x=113,y=529)
+        elif r=="R3":
+            self.IConfBut.place(x=684,y=438)
+            self.OConfBut.place(x=684,y=461)
+            self.IDataBut.place(x=684,y=483)
+            self.ODataBut.place(x=684,y=506)
+            self.RBut.place(x=684,y=529)
+        elif r=="R4":
+            self.IConfBut.place(x=684,y=221)
+            self.OConfBut.place(x=684,y=244)
+            self.IDataBut.place(x=684,y=267)
+            self.ODataBut.place(x=684,y=290)
+            self.RBut.place(x=684,y=313)
+        elif r=="R5":
+            self.IConfBut.place(x=320,y=21)
+            self.OConfBut.place(x=320,y=44)
+            self.IDataBut.place(x=320,y=67)
+            self.ODataBut.place(x=320,y=90)
+            self.DConfBut.place(x=320,y=113)
+            self.DDataBut.place(x=320,y=136)
+            self.RBut.place(x=320,y=159)
+        elif r=="All":
+            self.IConfBut.place(x=110,y=20)
+            self.OConfBut.place(x=110,y=43)
+            self.IDataBut.place(x=110,y=66)
+            self.ODataBut.place(x=110,y=89)
+        
 
 
     def display_listener_options(self):
         self.deleteWidgets()
-        self.LIBut = Button(self,font=("Arial", 12), fg='Black', text=f"Listener Interfaces", highlightbackground='red', command=lambda: self.display_listener_interf())
-        self.LIBut.config(height=2,width=15)
-        self.LIBut.grid(row=1, column=1, sticky="nsew")
+        self.LIBut = Button(font=("Arial", 8), fg='Black', text=f"Listener Interfaces", highlightbackground='red', command=lambda: self.display_listener_interf())
+        self.LIBut.config(height=1,width=15)
+        self.LIBut.place(x=700,y=20)
 
-        self.LDBut = Button(self,font=("Arial", 12), fg='Black', text=f"Listener DHCP Pools", highlightbackground='red', command=lambda: self.display_interface_config(r))
-        self.LDBut.config(height=2,width=15)
-        self.LDBut.grid(row=1, column=2, sticky="nsew")
+        self.LDBut = Button(font=("Arial", 8), fg='Black', text=f"Listener DHCP Pools", highlightbackground='red', command=lambda: self.display_listener_dhcp())
+        self.LDBut.config(height=1,width=15)
+        self.LDBut.place(x=700,y=43)
         
-
     def display_listener_interf(self):
-        root = Tk()
-        text = Text(root,width=60,height = 2)
-        text.pack()
-        text.insert(INSERT,"Interface GigabitEthernet4 in R1 went from Up/Up to Down")
+        t = Thread(target=self.listen)
+        t.start()
+    
+    def display_listener_dhcp(self):
+        t = Thread(target=self.listen2)
+        t.start()
 
+    def listen(self):
+        root = self.master
+        child_w = Toplevel(root)
+        child_w.geometry("480x360")
+        child_w.title("Interfaces Listener Says: ")
+        while True:
+            for router in routers:
+                get_interfaces_list(router)
+            for router in routers:
+                self.check_changes(router, child_w)
+            time.sleep(30)
+            
+    def check_changes(self, router, child_w):
+        with open(f"INTERFACES_CONFIG/{router['name']}-interfaces-list-config.json", "r") as f:
+            jsn = json.loads(f.read())
+        for interface in jsn["ietf-interfaces:interfaces"]["interface"]:
+            if interface["enabled"] == False:
+                idr = router["name"]
+                interf = interface["name"]
+                text = Text(child_w,width=60,height = 2)
+                text.pack()
+                hour, min, secs = map(int, time.strftime("%H %M %S").split())
+                text.insert(INSERT,f" {hour}:{min}:{secs} - Interface {interf} in {idr} went from Up/Up to Down")
+    
+    def listen2(self):
+        while True:
+            get_dhcp_data(r5)
+            get_dhcp_config(r5)
+            self.check_changes2()
+            time.sleep(30)
+    
+    def check_changes2(self):
+        with open(f"DHCP_CONFIG/R5-dhcp-config.json", "r") as f:
+            jsn = json.loads(f.read())
+        for ex_add in jsn["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-address-list"]:
+            if "192.168.1." in ex_add["low-address"]:
+                if not ex_add["low-address"] in dhcppools["Pool1"]:
+                    dhcppools["Pool1"].append(ex_add["low-address"])
+            elif "192.168.2." in ex_add["low-address"]:
+                if not ex_add["low-address"] in dhcppools["Pool2"]:
+                    dhcppools["Pool2"].append(ex_add["low-address"])
+            else:
+                if not ex_add["low-address"] in dhcppools["Pool3"]:
+                    dhcppools["Pool3"].append(ex_add["low-address"])
+        for ex_add in jsn["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-high-address-list"]:
+            low = ex_add["low-address"]
+            high = ex_add["high-address"]
+            low_int = int(low[10::])
+            high_int = int(high[10::])
+            for i in range(low_int,high_int+1):
+                add = low[0:10] + str(i)
+                if "192.168.1." in ex_add["low-address"]:
+                    if not add in dhcppools["Pool1"]:
+                        dhcppools["Pool1"].append(add)
+                elif "192.168.2." in ex_add["low-address"]:
+                    if not add in dhcppools["Pool2"]:
+                        dhcppools["Pool2"].append(add)
+                else:
+                    if not add in dhcppools["Pool3"]:
+                        dhcppools["Pool3"].append(add)
+        print(dhcppools)
+        with open(f"DHCP_DATA/R5-dhcp-oper-data.json", "r") as f:
+            jsn = json.loads(f.read())
+        for add in jsn["Cisco-IOS-XE-dhcp-oper:dhcpv4-server-oper"]:
+            ip = add["client-ip"]
+            pool = add["pool-name"]
+            if not ip in dhcppools[pool]:
+                dhcppools[pool].append(ip)
+        for key in dhcppools.keys():
+            if len(dhcppools[key])>=254:
+                root = self.master
+                child_w = Toplevel(root)
+                child_w.geometry("600x50")
+                child_w.title("Interfaces Listener Says: ")
+                text = Text(child_w,width=60,height = 2)
+                text.pack()
+                hour, min, secs = map(int, time.strftime("%H %M %S").split())
+                text.insert(INSERT,f"{hour}:{min}:{secs} - All IP addresses in {key} have been served")
+
+
+    def plot_spf_tree2(self, r):
+        router=None
+        for rtr in routers:
+            if rtr['name']==r:
+                router=rtr
+        G = nx.Graph()
+        G.add_node(router['name'])
+        colorlist=['yellow']
+        edge_labels = {}
+        nmap = {}
+        interfmap={}
+        get_routing(router)
+        with open(f"ROUTING/{router['name']}-routing.json", "r") as f:
+            routingjson = json.loads(f.read())
+        
+        routes = routingjson["ietf-routing:routing-state"]["routing-instance"][0]["ribs"]["rib"][0]["routes"]["route"]
+
+        #Adding all neighbors and outgoing interfaces to the maps
+        for route in routes:
+            neigh = route["update-source"]
+            interf = route["next-hop"]["outgoing-interface"]
+            if neigh!="0.0.0.0":
+                nmap[neigh] = route["next-hop"]["outgoing-interface"]
+            if len(interf)>1:
+                interfmap[interf]=(route["next-hop"]["next-hop-address"])
+        #Adding all interfaces as nodes to the root
+        for key in interfmap.keys():
+            G.add_node(key)
+            G.add_edge(key,router["name"])
+            colorlist.append('green')
+        #Adding all directly connected nets to interfaces
+        for key in interfmap.keys():
+            for route in routes:
+                if route["source-protocol"] == "ietf-routing:direct" and key == route["next-hop"]["outgoing-interface"] and not "/32" in route["destination-prefix"]:
+                    G.add_node(route["destination-prefix"])
+                    G.add_edge(route["destination-prefix"], key)
+                    colorlist.append('cyan')
+        #Adding all neighbors as nodes to the interfaces
+        for key in nmap.keys():
+            intf = nmap[key]
+            G.add_node(key)
+            G.add_edge(key,intf)
+            colorlist.append('blue')
+        #Adding all networks routed by the neighbors
+        for route in routes:
+            net = route["destination-prefix"]
+            neigh = route["update-source"]
+            if not "/32" in net and neigh!="0.0.0.0":
+                G.add_node(net)
+                G.add_edge(net,neigh)
+                colorlist.append('cyan')
+        
+        for route in routes:
+            net = route["destination-prefix"]
+            nhop = route["next-hop"]["next-hop-address"]
+            if route["source-protocol"] == "ietf-routing:static":
+                G.add_node(net)
+                colorlist.append('orange')
+                for rt in routes:
+                    net2 = rt["destination-prefix"]
+                    if nhop[0:3] in net2 and router["name"]=="R1" and len(rt["next-hop"]["outgoing-interface"])>1:
+                        G.add_edge(net, rt["next-hop"]["outgoing-interface"])
+                    elif rt["next-hop"]["next-hop-address"] == nhop and len(rt["next-hop"]["outgoing-interface"])>1:
+                        G.add_edge(net, rt["next-hop"]["outgoing-interface"])
+        
+        pos = nx.spring_layout(G, seed=1734289231)
+        nx.draw(G, node_color = colorlist, pos=pos, with_labels=True, edgelist=list(G.edges()), node_size=600)
+        nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels)
+        plt.axis('off')
+        plt.show()
+        
+    
     
     def display_interface_config(self, r):
         if r!="All": 
@@ -367,9 +419,15 @@ class ClientGUI(Frame):
                     self.tp.title('All Router Interfaces')
                     self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                     self.tree.config(show='headings')
-                    self.tree.grid(row=0, column=0)
+                    self.tree.tag_configure("cabecera", background='cyan', foreground="black")
+                    self.tree.pack(side='left')
+                    scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                    scrollbar.pack(side='right', fill='y')
                     for i in range(len(data)):
-                        self.tree.insert('',index = i, values=data[i])
+                        if data[i]==data[0]:
+                            self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                        else:
+                            self.tree.insert('',index = i, values=data[i])
         else:
             cabecera = ("Router","Interface", "Status", "IPv4", "Netmask", "IPv6", "Netmask")
             data = [("Router","Interface", "Status", "IPv4", "Netmask", "IPv6", "Netmask")]
@@ -399,9 +457,16 @@ class ClientGUI(Frame):
             self.tp.title('All Router Interfaces')
             self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in cabecera])
             self.tree.config(show='headings')
-            self.tree.grid(row=0, column=0)
-            for i in range(len(data)):
-                self.tree.insert('',index = i, values=data[i])
+            self.tree.tag_configure("cabecera", background='cyan', foreground="black")
+            self.tree.pack(side='left')
+            scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+            scrollbar.pack(side='right', fill='y')
+            for i in range(len(data)-1):
+                if data[i]==data[0]:
+                    self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                else:
+                    self.tree.insert('',index = i, values=data[i])
+            
     
     def display_dhcp_config(self, r):
         if r!="All":    
@@ -441,9 +506,15 @@ class ClientGUI(Frame):
                     self.tp.title('All Router Interfaces')
                     self.tree = ttk.Treeview(self.tp, height=len(pools), columns=[f"#{n}" for n in pools[0]])
                     self.tree.config(show='headings')
-                    self.tree.grid(row=0, column=0)
+                    self.tree.tag_configure("cabecera", background='cyan', foreground="black")
+                    self.tree.pack(side='left')
+                    scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                    scrollbar.pack(side='right', fill='y')
                     for i in range(len(pools)):
-                        self.tree.insert('',index = i, values=pools[i])
+                        if pools[i] == pools[0] or "Excluded Addresses" in pools[i]:
+                            self.tree.insert('',index = i, values=pools[i], tags=("cabecera",))
+                        else:
+                            self.tree.insert('',index = i, values=pools[i])
         else:
             for router in routers:
                     get_dhcp_config(router)
@@ -481,11 +552,12 @@ class ClientGUI(Frame):
             self.tp.title('All Router Interfaces')
             self.tree = ttk.Treeview(self.tp, height=len(pools), columns=[f"#{n}" for n in pools[0]])
             self.tree.config(show='headings')
-            self.tree.grid(row=0, column=0)
+            self.tree.pack(side='left')
+            scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+            scrollbar.pack(side='right', fill='y')
             for i in range(len(pools)):
                 self.tree.insert('',index = i, values=pools[i])
             
-
     def display_nat_config(self, r):
         for router in routers:
             if r == router['name']:
@@ -505,9 +577,15 @@ class ClientGUI(Frame):
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                 self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
+                self.tree.tag_configure("cabecera", background='cyan', foreground="black")
+                self.tree.pack(side='left')
+                scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                scrollbar.pack(side='right', fill='y')
                 for i in range(len(data)):
-                    self.tree.insert('',index = i, values=data[i])
+                    if data[i] == data[0]:
+                        self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                    else:
+                        self.tree.insert('',index = i, values=data[i])
 
     def display_ospf_config(self, r):
         if r != "All": 
@@ -530,15 +608,20 @@ class ClientGUI(Frame):
                     self.tp.title('All Router Interfaces')
                     self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                     self.tree.config(show='headings')
-                    self.tree.grid(row=0, column=0)
+                    self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+                    self.tree.pack(side='left')
+                    scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                    scrollbar.pack(side='right', fill='y')
                     for i in range(len(data)):
-                        self.tree.insert('',index = i, values=data[i])
+                        if data[i]==data[0]:
+                            self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                        else:
+                            self.tree.insert('',index = i, values=data[i])
         else:
                 cabecera=("Router", "Process ID", "Router ID", "Network", "Wildcard", "Area")
                 data = [cabecera]
                 for router in routers:
                     get_ospf_config(router)
-                    print(router["name"])
                     with open(f"OSPF_CONFIG/{router['name']}-ospf-config.json", "r") as f:
                         json_o = json.loads(f.read())
                     for ospf in json_o["Cisco-IOS-XE-native:router"]["Cisco-IOS-XE-ospf:router-ospf"]["ospf"]["process-id"]:
@@ -553,11 +636,18 @@ class ClientGUI(Frame):
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                 self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
+                self.tree.tag_configure('cabecera', background='cyan', foreground='black')
+                self.tree.pack(side='left')
+                scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                scrollbar.pack(side='right', fill='y')
                 for i in range(len(data)):
-                    self.tree.insert('',index = i, values=data[i])
-
-    
+                    print(data[i])
+                    print(cabecera)
+                    if data[i] == cabecera:
+                        self.tree.insert('',index = i, values=data[i], tags=('cabecera',))
+                    else:
+                        self.tree.insert('',index = i, values=data[i])
+  
     def display_interf_data(self, r):
         if r!="All":
             for router in routers:
@@ -614,9 +704,15 @@ class ClientGUI(Frame):
                     self.tp.title('All Router Interfaces')
                     self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                     self.tree.config(show='headings')
-                    self.tree.grid(row=0, column=0)
+                    self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+                    self.tree.pack(side='left')
+                    scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                    scrollbar.pack(side='right', fill='y')
                     for i in range(len(data)):
-                        self.tree.insert('',index = i, values=data[i])
+                        if data[i]==data[0]:
+                            self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                        else:
+                            self.tree.insert('',index = i, values=data[i])
         else:
             data=[]
             for router in routers:
@@ -673,9 +769,17 @@ class ClientGUI(Frame):
             self.tp.title('All Router Interfaces')
             self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
             self.tree.config(show='headings')
-            self.tree.grid(row=0, column=0)
+            self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+            self.tree.pack(side='left')
+            scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+            scrollbar.pack(side='right', fill='y')
+            self.tree.configure(yscrollcommand=scrollbar.set)
             for i in range(len(data)):
-                self.tree.insert('',index = i, values=data[i])
+                if data[i][1:3]==data[0][1:3]:
+                    self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                else:
+                    self.tree.insert('',index = i, values=data[i])
+            
 
     def display_dhcp_data(self, r):
         for router in routers:
@@ -697,9 +801,15 @@ class ClientGUI(Frame):
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                 self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
+                self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+                self.tree.pack(side='left')
+                scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                scrollbar.pack(side='right', fill='y')
                 for i in range(len(data)):
-                    self.tree.insert('',index = i, values=data[i])
+                    if data[i]==data[0]:
+                        self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                    else:
+                        self.tree.insert('',index = i, values=data[i])
 
     def display_nat_data(self,r):
         for router in routers:
@@ -744,29 +854,35 @@ class ClientGUI(Frame):
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(d_t), columns=[f"#{n}" for n in d_t[-1]])
                 self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
+                self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+                self.tree.pack(side='left')
+                scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                scrollbar.pack(side='right', fill='y')
                 for i in range(len(d_t)):
-                    self.tree.insert('',index = i, values=d_t[i])
+                    if d_t[i]==data2:
+                        self.tree.insert('',index = i, values=d_t[i], tags=("cabecera",))
+                    else:
+                        self.tree.insert('',index = i, values=d_t[i])
 
     def display_ospf_data(self,r):
         if r!="All":
             if len(lsa_names.keys())==0:  
                 for router in routers:
+                    print(router["name"])
                     get_ospf_data(router)
                     with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
                         json_o = json.loads(f.read())
                     lsaid = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["router-id"]
                     lsa_names[lsaid] = router['name'] + "(" + router['id'] + ")"
-                f.close()
+
                 print(lsa_names)
             if len(lsa_names.keys())>0:
                 for router in routers:
                     if r == router['name']:
                         get_ospf_data(router)
-            
             with open(f"OSPF_DATA/{r}-ospf.json", "r") as f:
                 json_o = json.loads(f.read())
-                
+            print("PASA4")
             data = [("Area","Neighbor ID", "Cost", "State", "Address", "Interface")]
             area = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["area-id"]
             for neighbor in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["ospf-interface"]:
@@ -779,7 +895,8 @@ class ClientGUI(Frame):
                     data.append((area,nid,cost,state,addr,interf))
                 
             data.append((f"{r} Link States Database","","","",""))
-            data.append(("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count"))
+            cab2=("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count")
+            data.append(cab2)
             for dato in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospfv2-instance"][0]["ospfv2-area"][0]["ospfv2-lsdb-area"]:
                 if "router-lsa" in dato.keys():
                     lid = lsa_names[dato["lsa-id"]]
@@ -793,22 +910,31 @@ class ClientGUI(Frame):
             self.tp.title('All Router Interfaces')
             self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
             self.tree.config(show='headings')
-            self.tree.grid(row=0, column=0)
+            self.tree.tag_configure("cabecera", background="cyan", foreground="black")
+            self.tree.pack(side='left')
+            scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+            scrollbar.pack(side='right', fill='y')
             for i in range(len(data)):
-                self.tree.insert('',index = i, values=data[i])
+                if data[i]==data[0] or data[i]==cab2:
+                    self.tree.insert('',index = i, values=data[i], tags=("cabecera",))
+                else:
+                    self.tree.insert('',index = i, values=data[i])
         else:   
                 data = []
+                cab2 = ("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count")
                 for router in routers:
                     get_ospf_data(router)
+                    print("PASA")
                     with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
                         json_o = json.loads(f.read())
                     lsaid = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["router-id"]
                     lsa_names[lsaid] = router['name'] + "(" + router['id'] + ")"
                 f.close()
+                print("PASA")
                 for router in routers:
                     with open(f"OSPF_DATA/{router['name']}-ospf.json", "r") as f:
                         json_o = json.loads(f.read())
-                        
+                    print("PASA")
                     data.append((router["name"],"Area","Neighbor ID", "Cost", "State", "Address", "Interface"))
                     area = json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["area-id"]
                     for neighbor in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospf-state"]["ospf-instance"][0]["ospf-area"][0]["ospf-interface"]:
@@ -821,10 +947,9 @@ class ClientGUI(Frame):
                             data.append(("",area,nid,cost,state,addr,interf))
                     print(lsa_names)
                     data.append((f"{router['name']} Link States Database","","","",""))
-                    data.append(("Link ID","ADV Router", "LSA Type", "Age", "Seq | Checksum", "Link Count"))
+                    data.append(cab2)
                     for dato in json_o["Cisco-IOS-XE-ospf-oper:ospf-oper-data"]["ospfv2-instance"][0]["ospfv2-area"][0]["ospfv2-lsdb-area"]:
                         if "router-lsa" in dato.keys():
-                            print(dato["lsa-id"])
                             lid = lsa_names[dato["lsa-id"]]
                             adv = lsa_names[dato["advertising-router"]]
                             tp = dato["lsa-type"]
@@ -836,16 +961,71 @@ class ClientGUI(Frame):
                 self.tp.title('All Router Interfaces')
                 self.tree = ttk.Treeview(self.tp, height=len(data), columns=[f"#{n}" for n in data[0]])
                 self.tree.config(show='headings')
-                self.tree.grid(row=0, column=0)
+                self.tree.tag_configure("cabecera", background='cyan', foreground='black')
+                self.tree.pack(side='left')
+                scrollbar = ttk.Scrollbar(self.tp, orient='vertical', command=self.tree.yview)
+                scrollbar.pack(side='right', fill='y')
                 for i in range(len(data)):
-                    self.tree.insert('',index = i, values=data[i])
-    
-        
-    
+                    if data[i][1::]==data[0][1::] or data[i]==cab2:
+                        self.tree.insert('',index = i, values=data[i], tags=("cabecera",))  
+                    else:
+                        self.tree.insert('',index = i, values=data[i])
+
+
 
 
 gui = Tk()
 gui.title("Restconf Client")
-gui.geometry("720x480")
-root = ClientGUI(gui).grid()
+gui.geometry("912x597")
+root = ClientGUI(gui)
+#imagen = PhotoImage(file = "PRUEBA.png")
+imagen = Image.open("PRUEBA.png")
+img = imagen.resize((912,597)) 
+my_img=ImageTk.PhotoImage(img)
+
+background = Label(image = my_img, text = "Imagen S.O de fondo")
+background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
+r1 = Image.open("router1.png")
+r1=r1.resize((55,66))
+r1 = ImageTk.PhotoImage(r1)
+botonNuevo1 = Button(gui,image=r1, compound="top", command= lambda: root.display_options("R1"))
+botonNuevo1.place(x=48, y=220.5)
+        
+
+r2 = Image.open("router2.png")
+r2 = r2.resize((57,61))
+r2 = ImageTk.PhotoImage(r2)
+botonNuevo2 = Button(gui, image=r2, compound="top", command= lambda: root.display_options("R2"))
+botonNuevo2.place(x=48, y=487)
+
+
+r3 = Image.open("router3.png")
+r3 = r3.resize((55,64))
+r3 = ImageTk.PhotoImage(r3)
+botonNuevo3 = Button(gui, image=r3, compound="top", command= lambda: root.display_options("R3"))
+botonNuevo3.place(x=786, y=484.5)
+
+
+r4 = Image.open("router4.png")
+r4 = r4.resize((54,61))
+r4 = ImageTk.PhotoImage(r4)
+botonNuevo4 = Button(gui, image=r4, compound="top", command= lambda: root.display_options("R4"))
+botonNuevo4.place(x=785, y=224)
+
+
+r5 = Image.open("router5.png")
+r5 = r5.resize((54,52))
+r5 = ImageTk.PhotoImage(r5)
+botonNuevo5 = Button(gui, image=r5, compound="top", command= lambda: root.display_options("R5"))
+botonNuevo5.place(x=418, y=22)
+
+AButton = Button(gui, font=("Arial", 10), fg='Black', text="All", highlightbackground='red', command=lambda: root.display_options("All"))
+AButton.config(height=1,width=10)
+AButton.place(x=20,y=20)
+
+TButton = Button(gui, font=("Arial", 10), fg='Black', text="Listeners", highlightbackground='red', command=lambda: root.display_listener_options())
+TButton.config(height=1,width=10)
+TButton.place(x=800,y=20)
+
 gui.mainloop()
+

@@ -79,7 +79,7 @@
                                         "active": [
                                             null
                                         ],
-                                        "update-source": "2.2.2.2"
+                                        "update-source": "5.5.5.5"
                                     },
                                     {
                                         "destination-prefix": "192.168.0.12/30",
@@ -149,7 +149,7 @@
                                         "active": [
                                             null
                                         ],
-                                        "update-source": "2.2.2.2"
+                                        "update-source": "3.3.3.3"
                                     },
                                     {
                                         "destination-prefix": "192.168.1.0/24",

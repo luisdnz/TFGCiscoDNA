@@ -26,6 +26,20 @@
                             "routes": {
                                 "route": [
                                     {
+                                        "destination-prefix": "0.0.0.0/0",
+                                        "route-preference": 1,
+                                        "metric": 1,
+                                        "next-hop": {
+                                            "outgoing-interface": "",
+                                            "next-hop-address": "64.100.0.2"
+                                        },
+                                        "source-protocol": "ietf-routing:static",
+                                        "active": [
+                                            null
+                                        ],
+                                        "update-source": "0.0.0.0"
+                                    },
+                                    {
                                         "destination-prefix": "64.100.0.0/30",
                                         "route-preference": 0,
                                         "metric": 0,
@@ -107,7 +121,7 @@
                                         "active": [
                                             null
                                         ],
-                                        "update-source": "2.2.2.2"
+                                        "update-source": "5.5.5.5"
                                     },
                                     {
                                         "destination-prefix": "192.168.0.12/30",
@@ -177,7 +191,7 @@
                                         "active": [
                                             null
                                         ],
-                                        "update-source": "2.2.2.2"
+                                        "update-source": "3.3.3.3"
                                     },
                                     {
                                         "destination-prefix": "192.168.1.0/24",
