@@ -55,16 +55,16 @@ r5 = {
 
 routers = [r1,r2,r3,r4,r5]
 
-for router in routers:
+#for router in routers:
 #    get_interfaces_data(router)
 #get_interfaces_list(r1)
-    put_interfaces_list(router)
+ #   put_interfaces_list(router)
     #get_ospf_config(router)
-    put_ospf_config(router)
+  #  put_ospf_config(router)
 #get_running_config(r1)
     #get_running_config(router)
 #get_nat_data(r1)
-put_nat_config(r1)
+#put_nat_config(r1)
 #get_dhcp_data(r5)
 #get_dhcp_config(r5)
 put_dhcp_config(r5)

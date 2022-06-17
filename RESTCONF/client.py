@@ -180,42 +180,42 @@ class ClientGUI(Frame):
 
         if r=="R1":
             self.IConfBut.place(x=111,y=221)
-            self.OConfBut.place(x=111,y=244)
-            self.IDataBut.place(x=111,y=267)
+            self.IDataBut.place(x=111,y=244)
+            self.OConfBut.place(x=111,y=267)
             self.ODataBut.place(x=111,y=290)
             self.NConfBut.place(x=111,y=313)
             self.NDataBut.place(x=111,y=336)
             self.RBut.place(x=111,y=359)
         elif r=="R2":
             self.IConfBut.place(x=113,y=438)
-            self.OConfBut.place(x=113,y=461)
-            self.IDataBut.place(x=113,y=483)
+            self.IDataBut.place(x=113,y=461)
+            self.OConfBut.place(x=113,y=483)
             self.ODataBut.place(x=113,y=506)
             self.RBut.place(x=113,y=529)
         elif r=="R3":
             self.IConfBut.place(x=684,y=438)
-            self.OConfBut.place(x=684,y=461)
-            self.IDataBut.place(x=684,y=483)
+            self.IDataBut.place(x=684,y=461)
+            self.OConfBut.place(x=684,y=483)
             self.ODataBut.place(x=684,y=506)
             self.RBut.place(x=684,y=529)
         elif r=="R4":
             self.IConfBut.place(x=684,y=221)
-            self.OConfBut.place(x=684,y=244)
-            self.IDataBut.place(x=684,y=267)
+            self.IDataBut.place(x=684,y=244)
+            self.OConfBut.place(x=684,y=267)
             self.ODataBut.place(x=684,y=290)
             self.RBut.place(x=684,y=313)
         elif r=="R5":
             self.IConfBut.place(x=320,y=21)
-            self.OConfBut.place(x=320,y=44)
-            self.IDataBut.place(x=320,y=67)
+            self.IDataBut.place(x=320,y=44)
+            self.OConfBut.place(x=320,y=67)
             self.ODataBut.place(x=320,y=90)
             self.DConfBut.place(x=320,y=113)
             self.DDataBut.place(x=320,y=136)
             self.RBut.place(x=320,y=159)
         elif r=="All":
             self.IConfBut.place(x=110,y=20)
-            self.OConfBut.place(x=110,y=43)
-            self.IDataBut.place(x=110,y=66)
+            self.IDataBut.place(x=110,y=43)
+            self.OConfBut.place(x=110,y=66)
             self.ODataBut.place(x=110,y=89)
         
 
@@ -241,14 +241,14 @@ class ClientGUI(Frame):
     def listen(self):
         root = self.master
         child_w = Toplevel(root)
-        child_w.geometry("480x360")
+        child_w.geometry("500x360")
         child_w.title("Interfaces Listener Says: ")
         while True:
             for router in routers:
                 get_interfaces_list(router)
             for router in routers:
                 self.check_changes(router, child_w)
-            time.sleep(30)
+            time.sleep(15)
             
     def check_changes(self, router, child_w):
         with open(f"INTERFACES_CONFIG/{router['name']}-interfaces-list-config.json", "r") as f:
@@ -263,13 +263,17 @@ class ClientGUI(Frame):
                 text.insert(INSERT,f" {hour}:{min}:{secs} - Interface {interf} in {idr} went from Up/Up to Down")
     
     def listen2(self):
+        root = self.master
+        child_w = Toplevel(root)
+        child_w.geometry("500x360")
+        child_w.title("DHCP Listener Says: ")
         while True:
             get_dhcp_data(r5)
             get_dhcp_config(r5)
-            self.check_changes2()
-            time.sleep(30)
+            self.check_changes2(child_w)
+            time.sleep(15)
     
-    def check_changes2(self):
+    def check_changes2(self, child_w):
         with open(f"DHCP_CONFIG/R5-dhcp-config.json", "r") as f:
             jsn = json.loads(f.read())
         for ex_add in jsn["Cisco-IOS-XE-native:dhcp"]["Cisco-IOS-XE-dhcp:excluded-address"]["low-address-list"]:
@@ -298,7 +302,6 @@ class ClientGUI(Frame):
                 else:
                     if not add in dhcppools["Pool3"]:
                         dhcppools["Pool3"].append(add)
-        print(dhcppools)
         with open(f"DHCP_DATA/R5-dhcp-oper-data.json", "r") as f:
             jsn = json.loads(f.read())
         for add in jsn["Cisco-IOS-XE-dhcp-oper:dhcpv4-server-oper"]:
@@ -308,10 +311,6 @@ class ClientGUI(Frame):
                 dhcppools[pool].append(ip)
         for key in dhcppools.keys():
             if len(dhcppools[key])>=254:
-                root = self.master
-                child_w = Toplevel(root)
-                child_w.geometry("600x50")
-                child_w.title("Interfaces Listener Says: ")
                 text = Text(child_w,width=60,height = 2)
                 text.pack()
                 hour, min, secs = map(int, time.strftime("%H %M %S").split())
@@ -985,38 +984,38 @@ my_img=ImageTk.PhotoImage(img)
 
 background = Label(image = my_img, text = "Imagen S.O de fondo")
 background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
-r1 = Image.open("router1.png")
-r1=r1.resize((55,66))
-r1 = ImageTk.PhotoImage(r1)
-botonNuevo1 = Button(gui,image=r1, compound="top", command= lambda: root.display_options("R1"))
+ir1 = Image.open("router1.png")
+ir1=ir1.resize((55,66))
+ir1 = ImageTk.PhotoImage(ir1)
+botonNuevo1 = Button(gui,image=ir1, compound="top", command= lambda: root.display_options("R1"))
 botonNuevo1.place(x=48, y=220.5)
         
 
-r2 = Image.open("router2.png")
-r2 = r2.resize((57,61))
-r2 = ImageTk.PhotoImage(r2)
-botonNuevo2 = Button(gui, image=r2, compound="top", command= lambda: root.display_options("R2"))
+ir2 = Image.open("router2.png")
+ir2 = ir2.resize((57,61))
+ir2 = ImageTk.PhotoImage(ir2)
+botonNuevo2 = Button(gui, image=ir2, compound="top", command= lambda: root.display_options("R2"))
 botonNuevo2.place(x=48, y=487)
 
 
-r3 = Image.open("router3.png")
-r3 = r3.resize((55,64))
-r3 = ImageTk.PhotoImage(r3)
-botonNuevo3 = Button(gui, image=r3, compound="top", command= lambda: root.display_options("R3"))
+ir3 = Image.open("router3.png")
+ir3 = ir3.resize((55,64))
+ir3 = ImageTk.PhotoImage(ir3)
+botonNuevo3 = Button(gui, image=ir3, compound="top", command= lambda: root.display_options("R3"))
 botonNuevo3.place(x=786, y=484.5)
 
 
-r4 = Image.open("router4.png")
-r4 = r4.resize((54,61))
-r4 = ImageTk.PhotoImage(r4)
-botonNuevo4 = Button(gui, image=r4, compound="top", command= lambda: root.display_options("R4"))
+ir4 = Image.open("router4.png")
+ir4 = ir4.resize((54,61))
+ir4 = ImageTk.PhotoImage(ir4)
+botonNuevo4 = Button(gui, image=ir4, compound="top", command= lambda: root.display_options("R4"))
 botonNuevo4.place(x=785, y=224)
 
 
-r5 = Image.open("router5.png")
-r5 = r5.resize((54,52))
-r5 = ImageTk.PhotoImage(r5)
-botonNuevo5 = Button(gui, image=r5, compound="top", command= lambda: root.display_options("R5"))
+ir5 = Image.open("router5.png")
+ir5 = ir5.resize((54,52))
+ir5 = ImageTk.PhotoImage(ir5)
+botonNuevo5 = Button(gui, image=ir5, compound="top", command= lambda: root.display_options("R5"))
 botonNuevo5.place(x=418, y=22)
 
 AButton = Button(gui, font=("Arial", 10), fg='Black', text="All", highlightbackground='red', command=lambda: root.display_options("All"))

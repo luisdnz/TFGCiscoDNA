@@ -2,12 +2,38 @@
     "Cisco-IOS-XE-dhcp-oper:dhcpv4-server-oper": [
         {
             "pool-name": "Pool3",
-            "client-ip": "192.168.3.1",
+            "client-ip": "192.168.3.252",
             "vrf-name": "",
             "client-id-type": "dhcp-htype-ethernet",
-            "client-id": "0152.5400.01ce.89",
+            "client-id": "0152.5400.15fc.f4",
             "expiration": {
-                "time": "2022-06-16T18:13:32+00:00"
+                "time": "2022-06-18T06:39:47+00:00"
+            },
+            "type": "dhcp-server-binding-type-automatic",
+            "state": "dhcp-server-binding-state-active",
+            "interface": "GigabitEthernet3"
+        },
+        {
+            "pool-name": "Pool1",
+            "client-ip": "192.168.1.21",
+            "vrf-name": "",
+            "client-id-type": "dhcp-htype-ethernet",
+            "client-id": "0152.5400.1086.13",
+            "expiration": {
+                "time": "2022-06-18T08:54:17+00:00"
+            },
+            "type": "dhcp-server-binding-type-automatic",
+            "state": "dhcp-server-binding-state-active",
+            "interface": "GigabitEthernet2"
+        },
+        {
+            "pool-name": "Pool3",
+            "client-ip": "192.168.3.253",
+            "vrf-name": "",
+            "client-id-type": "dhcp-htype-ethernet",
+            "client-id": "0152.5400.131b.43",
+            "expiration": {
+                "time": "2022-06-18T10:18:40+00:00"
             },
             "type": "dhcp-server-binding-type-automatic",
             "state": "dhcp-server-binding-state-active",
